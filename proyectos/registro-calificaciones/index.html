@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<script src="../demo.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistema de Registro de Calificaciones</title>
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="caja">
+  <div class="titulo">
+    <h1>SISTEMA DE REGISTRO DE CALIFICACIONES</h1>
+    <p>Universidad Jean Piaget</p>
+  </div>
+
+  <form data-demo="Calificaciones registradas (demostración: no se envió a ningún formulario).">
+
+    <h2>Datos del estudiante</h2>
+    <label>Nombre completo</label>
+    <input name="entry.1989819629" required>
+
+    <label>Carrera</label>
+    <select name="entry.150489306" required>
+      <option value="">Seleccionar carrera</option>
+      <option>Ingeniería en Sistemas Computacionales</option>
+      <option>Ingeniería Industrial</option>
+      <option>Licenciatura en Ciencias de la Comunicación</option>
+      <option>Licenciatura en Administración</option>
+    </select>
+
+    <label>Semestre</label>
+    <select name="entry.1026355934" required>
+      <option value="">Seleccionar semestre</option>
+      <option>1</option><option>2</option><option>3</option>
+      <option>4</option><option>5</option><option>6</option>
+      <option>7</option><option>8</option><option>9</option>
+    </select>
+
+    <label>Grupo</label>
+    <input name="entry.281117448" required>
+
+    <h2>Periodo de evaluación</h2>
+    <select name="entry.330611656" required>
+      <option value="">Seleccionar parcial: 1, 2 o 3</option>
+      <option>1</option><option>2</option><option>3</option>
+    </select>
+
+    <h2>Registro de materias</h2>
+    <div class="materia"><b>Materia 1</b>
+      <label>Nombre de la materia</label><input name="entry.869615862" required>
+      <label>Calificación</label><input name="entry.133640368" type="number" min="0" max="100" required>
+    </div>
+    <div class="materia"><b>Materia 2</b>
+      <label>Nombre de la materia</label><input name="entry.992178226">
+      <label>Calificación</label><input name="entry.1126734688" type="number" min="0" max="100">
+    </div>
+    <div class="materia"><b>Materia 3</b>
+      <label>Nombre de la materia</label><input name="entry.1557558022">
+      <label>Calificación</label><input name="entry.1265665044" type="number" min="0" max="100">
+    </div>
+    <div class="materia"><b>Materia 4</b>
+      <label>Nombre de la materia</label><input name="entry.1908458058">
+      <label>Calificación</label><input name="entry.568857117" type="number" min="0" max="100">
+    </div>
+    <div class="materia"><b>Materia 5</b>
+      <label>Nombre de la materia</label><input name="entry.2003304695">
+      <label>Calificación</label><input name="entry.379560307" type="number" min="0" max="100">
+    </div>
+    <div class="materia"><b>Materia 6</b>
+      <label>Nombre de la materia</label><input name="entry.865753718">
+      <label>Calificación</label><input name="entry.1479001617" type="number" min="0" max="100">
+    </div>
+
+    <button type="submit">Registrar calificaciones</button>
+  </form>
+</div>
+
+<iframe name="oculto" class="oculto"></iframe>
+</body>
+</html>

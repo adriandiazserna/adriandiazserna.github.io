@@ -1,0 +1,163 @@
+/* ===== Base ===== */
+html {
+    background-color: #e6f0ee;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+    max-width: 820px;
+    margin: 30px auto;
+    padding: 28px 32px;
+    background-color: #ffffff;
+    color: #24323a;
+    line-height: 1.5;
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== Títulos ===== */
+h1 {
+    text-align: center;
+    color: #0f766e;
+    margin-top: 0;
+    letter-spacing: 0.5px;
+}
+
+h2 {
+    color: #115e59;
+    font-size: 1.15em;
+    margin-top: 30px;
+    padding-left: 10px;
+    border-left: 5px solid #14b8a6;
+}
+
+h3 {
+    color: #0f766e;
+    margin-top: 0;
+}
+
+/* ===== Etiquetas y campos ===== */
+label {
+    display: inline-block;
+    min-width: 160px;
+    font-weight: 600;
+}
+
+input,
+select {
+    font-family: inherit;
+    font-size: 0.95em;
+    padding: 7px 10px;
+    border: 1px solid #b6c4c2;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.25);
+}
+
+input[readonly] {
+    background-color: #f1f5f4;
+    color: #4b5d5b;
+}
+
+/* ===== Tabla de productos ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #cfdcda;
+}
+
+th {
+    background-color: #0f766e;
+    color: #ffffff;
+    padding: 10px;
+    border: 1px solid #0f766e;
+    text-align: center;
+}
+
+td {
+    padding: 8px;
+    border: 1px solid #cfdcda;
+    text-align: center;
+}
+
+tr:nth-child(even) td {
+    background-color: #f5faf9;
+}
+
+td select,
+td input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ===== Total ===== */
+#total {
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #0f766e;
+    border: 2px solid #14b8a6;
+}
+
+/* ===== Botones ===== */
+button {
+    font-family: inherit;
+    font-size: 0.95em;
+    font-weight: 600;
+    padding: 10px 22px;
+    margin-right: 8px;
+    border: 2px solid #0f766e;
+    border-radius: 6px;
+    background-color: #0f766e;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #115e59;
+    border-color: #115e59;
+}
+
+button + button {
+    background-color: #ffffff;
+    color: #0f766e;
+}
+
+button + button:hover {
+    background-color: #e6f7f5;
+    color: #115e59;
+}
+
+/* ===== Resultado ===== */
+#resultado {
+    background-color: #f0fdfa;
+    border: 1px solid #99e0d6;
+    border-left: 6px solid #14b8a6;
+    border-radius: 6px;
+    padding: 4px 16px;
+    min-height: 20px;
+}
+
+/* ===== Pantallas pequeñas ===== */
+@media (max-width: 600px) {
+    body {
+        margin: 10px;
+        padding: 16px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    th,
+    td {
+        padding: 4px;
+        font-size: 0.85em;
+    }
+}

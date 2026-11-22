@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script src="../demo.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Códice Neón · Películas, estrenos y noticias</title>
+<meta name="description" content="Cartelera, estrenos y noticias de cine con una interfaz retrofuturista inspirada en Matrix y Blade Runner.">
+<meta name="theme-color" content="#050208">
+<style>
+:root{
+  --negro:#050208;--noche:#120626;--violeta:#4c1d95;--purpura:#7c3aed;--fucsia:#d946ef;--lila:#c4b5fd;
+  --blanco:#f5f0ff;--tenue:#8b7fb0;--linea:rgba(196,181,253,.32);
+  --mono:"Cascadia Code","SF Mono",Consolas,"Courier New",monospace;
+  --disp:"Eurostile","Bank Gothic","Century Gothic","Avenir Next",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--blanco);font:1rem/1.6 var(--disp);
+  background:radial-gradient(60rem 30rem at 50% -10%,rgba(124,58,237,.45),transparent 70%),var(--negro)}
+/* Líneas de barrido tipo monitor CRT */
+body::after{content:"";position:fixed;inset:0;z-index:50;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px)}
+h1,h2,h3,p{margin:0}
+.cod{font-family:var(--mono)}
+
+/* Cabecera y pestañas (conmutador sin JavaScript: botones de radio + etiquetas) */
+.cab{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.4rem 1.5rem;
+  padding:1rem clamp(1rem,4vw,3rem)}
+.logo{font-size:1.5rem;font-weight:700;letter-spacing:.16em}
+.estado{font-size:.85rem;color:var(--tenue)}
+.vh{position:absolute;width:1px;height:1px;opacity:0}
+.tabs{position:sticky;top:0;z-index:20;display:flex;gap:.5rem;overflow-x:auto;padding:.6rem clamp(1rem,4vw,3rem);
+  background:rgba(5,2,8,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  border-block:1px solid var(--linea)}
+.tabs label{flex:1 0 auto;min-width:8rem;padding:.75rem 1.1rem;border:1px solid var(--linea);border-radius:.25rem;
+  text-align:center;font-weight:600;letter-spacing:.06em;color:var(--lila);cursor:pointer;transition:background .2s,color .2s}
+.tabs label:hover{border-color:var(--lila);color:#fff}
+#v1:checked~.tabs [for=v1],#v2:checked~.tabs [for=v2],#v3:checked~.tabs [for=v3]{
+  background:var(--purpura);border-color:var(--purpura);color:#fff;box-shadow:0 0 18px rgba(124,58,237,.75)}
+#v1:focus-visible~.tabs [for=v1],#v2:focus-visible~.tabs [for=v2],#v3:focus-visible~.tabs [for=v3]{outline:3px solid #fff;outline-offset:2px}
+
+/* Paneles: cada interfaz tiene su propio ambiente */
+.panel{display:none;position:relative;overflow:hidden;max-width:80rem;margin:auto;
+  padding:clamp(1.5rem,5vw,3.5rem) clamp(1rem,4vw,3rem) clamp(2.5rem,6vw,4.5rem)}
+#v1:checked~main #p1,#v2:checked~main #p2,#v3:checked~main #p3{display:block}
+h2{font-size:clamp(2rem,6vw,3.6rem);line-height:1.05;letter-spacing:.02em;margin-bottom:.6rem}
+h3{font-size:1.3rem;line-height:1.25;margin-bottom:.4rem}
+.sub{max-width:38rem;margin-bottom:2rem;color:var(--lila)}
+.rel{position:relative;z-index:1}
+
+/* Ventana de terminal / codex */
+.term{border:1px solid var(--linea);border-radius:.4rem;background:rgba(5,2,8,.85);box-shadow:0 0 30px rgba(124,58,237,.35)}
+.barra{display:flex;align-items:center;gap:.4rem;padding:.55rem .9rem;border-bottom:1px solid var(--linea);font:.8rem var(--mono);color:var(--tenue)}
+.barra i{width:.6rem;aspect-ratio:1;border-radius:50%;background:var(--purpura)}
+.barra span{margin-left:.5rem}
+pre{margin:0;padding:1rem 1.2rem;overflow-x:auto;font:.92rem/1.75 var(--mono);color:var(--blanco)}
+.k{color:var(--fucsia)}.s{color:var(--lila)}.f{color:#fff;font-weight:700}.c{color:var(--tenue)}
+.cur{display:inline-block;width:.6em;height:1.1em;margin-left:.2em;background:var(--lila);vertical-align:text-bottom}
+
+/* Fotografías con tinte morado */
+.foto{position:relative;margin:0;overflow:hidden;isolation:isolate;background:linear-gradient(160deg,var(--violeta),var(--noche))}
+.foto img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15)}
+.foto::before{content:"";position:absolute;inset:0;z-index:1;mix-blend-mode:color;background:linear-gradient(160deg,var(--purpura),#c026d3)}
+.foto::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(5,2,8,.85),transparent 55%)}
+.tarjeta{border:1px solid var(--linea);border-radius:.4rem;background:rgba(18,6,38,.85);overflow:hidden}
+.tarjeta .foto{aspect-ratio:16/10}
+.cuerpo{padding:1.1rem 1.2rem 1.4rem}
+.cuerpo p{color:var(--lila)}
+.meta{margin-top:.8rem;font:.85rem var(--mono);color:var(--tenue)}
+
+/* Interfaz 1: Matrix */
+.lluvia{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.45}
+.lluvia b{position:absolute;top:0;left:var(--x);writing-mode:vertical-rl;text-orientation:upright;
+  font:700 1rem/1.1 var(--mono);letter-spacing:.1em;color:var(--lila);text-shadow:0 0 8px var(--purpura);
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 75%);mask-image:linear-gradient(to bottom,transparent,#000 75%)}
+.duo{display:grid;gap:1.5rem}
+@media(min-width:860px){.duo{grid-template-columns:1.1fr .9fr;align-items:start}}
+
+/* Interfaz 2: Blade Runner */
+.cabeza{display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem}
+.iris{flex:none;width:4.5rem;aspect-ratio:1;border-radius:50%;border:2px solid var(--lila);box-shadow:0 0 22px var(--purpura);
+  background:radial-gradient(circle,#000 0 14%,var(--fucsia) 15% 17%,var(--noche) 18% 45%,transparent 46%),
+  repeating-conic-gradient(var(--lila) 0 2deg,var(--noche) 2deg 12deg)}
+.sol{position:absolute;right:-3rem;top:1rem;width:15rem;aspect-ratio:1;border-radius:50%;opacity:.3;pointer-events:none;
+  background:linear-gradient(var(--lila),var(--fucsia) 45%,var(--violeta));
+  -webkit-mask-image:repeating-linear-gradient(#000 0 .9rem,transparent .9rem 1.1rem);mask-image:repeating-linear-gradient(#000 0 .9rem,transparent .9rem 1.1rem)}
+.suelo{position:absolute;left:-10%;right:-10%;bottom:0;height:16rem;pointer-events:none;
+  background:linear-gradient(var(--linea) 1px,transparent 1px) 0 0/100% 2.5rem,linear-gradient(90deg,var(--linea) 1px,transparent 1px) 0 0/2.5rem 100%;
+  transform:perspective(20rem) rotateX(62deg);transform-origin:bottom;
+  -webkit-mask-image:linear-gradient(to top,#000,transparent);mask-image:linear-gradient(to top,#000,transparent)}
+.carteles{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr))}
+.cartel{position:relative;border:1px solid var(--lila);border-radius:.25rem;background:var(--noche);box-shadow:0 0 22px rgba(217,70,239,.35)}
+.cartel .foto{aspect-ratio:2/3}
+.cartel .txt{position:absolute;inset:auto 0 0;z-index:3;padding:1.1rem}
+.cartel h3{font-size:1.7rem;text-shadow:0 0 14px var(--fucsia)}
+.ficha{font:.82rem/1.5 var(--mono);color:var(--lila)}
+
+/* Interfaz 3: Codex de noticias */
+.noticias{display:grid;gap:1.5rem}
+@media(min-width:900px){.noticias{grid-template-columns:1.3fr 1fr;align-items:start}}
+.noticias>div{display:grid;gap:1.5rem}
+.log{list-style:none;margin:0;padding:0 1.2rem .6rem}
+.log li{display:grid;grid-template-columns:auto 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px dashed var(--linea)}
+.log li:last-child{border:0}
+.log time{font:.85rem var(--mono);color:var(--tenue)}
+.log p{font-weight:600}
+.titulo-log{padding:1rem 1.2rem .2rem}
+
+footer{padding:1.5rem 1rem 3rem;border-top:1px solid var(--linea);text-align:center;color:var(--tenue);font:.85rem var(--mono)}
+
+/* Movimiento: solo si la persona no lo ha desactivado */
+@media(prefers-reduced-motion:no-preference){
+  .panel{animation:encender .5s ease-out}
+  .lluvia b{animation:caer var(--v,14s) linear infinite;animation-delay:var(--d,0s)}
+  .cur{animation:parpadeo 1s steps(2) infinite}
+  .iris{animation:pulso 3s ease-in-out infinite}
+  @keyframes encender{from{opacity:0;filter:brightness(2.2)}to{opacity:1;filter:none}}
+  @keyframes caer{from{top:-60%}to{top:100%}}
+  @keyframes parpadeo{50%{opacity:0}}
+  @keyframes pulso{50%{transform:scale(1.08)}}
+}
+</style>
+</head>
+<body>
+<header class="cab">
+  <h1 class="logo">Códice Neón</h1>
+  <p class="estado cod">// películas · estrenos · noticias</p>
+</header>
+
+<input class="vh" type="radio" name="vista" id="v1" checked>
+<input class="vh" type="radio" name="vista" id="v2">
+<input class="vh" type="radio" name="vista" id="v3">
+<nav class="tabs" aria-label="Interfaces">
+  <label for="v1">Películas</label>
+  <label for="v2">Estrenos</label>
+  <label for="v3">Noticias</label>
+</nav>
+
+<main>
+  <!-- Interfaz 1 · Películas (estilo Matrix) -->
+  <section id="p1" class="panel" aria-labelledby="t1">
+    <div class="lluvia" aria-hidden="true">
+      <b style="--x:3%;--v:13s;--d:-2s">ｱｲｳｴｵｶｷｸｹｺ01ｻｼｽｾｿﾀﾁﾂﾃﾄ10ﾅﾆﾇ</b>
+      <b style="--x:12%;--v:17s;--d:-9s">01ﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓ10ﾔﾕﾖﾗﾘﾙﾚﾛ01ﾜ</b>
+      <b style="--x:22%;--v:11s;--d:-5s">ﾂﾃﾄﾅﾆ1001ｱｲｳｴｵｶｷ10ｸｹｺｻｼ</b>
+      <b style="--x:33%;--v:15s;--d:-12s">10ﾏﾐﾑﾒﾓｦﾝ01ﾊﾋﾌﾍﾎ10ﾔﾕﾖﾗ</b>
+      <b style="--x:45%;--v:12s;--d:-7s">ｶｷｸｹｺ01ﾛﾜｦﾝ10ﾀﾁﾂﾃﾄｱｲｳ</b>
+      <b style="--x:57%;--v:16s;--d:-3s">01ﾅﾆﾇﾈﾉ10ﾊﾋﾌﾍﾎﾏﾐﾑ01ｻｼｽ</b>
+      <b style="--x:68%;--v:14s;--d:-10s">ﾔﾕﾖﾗﾘﾙﾚ0110ｱｲｳｴｵｶｷｸｹ</b>
+      <b style="--x:79%;--v:18s;--d:-6s">10ﾒﾓﾔﾕﾖ01ｿﾀﾁﾂﾃﾄ10ﾅﾆﾇ</b>
+      <b style="--x:90%;--v:12s;--d:-1s">ﾎﾏﾐﾑ01ﾒﾓ10ｦﾝｱｲｳｴｵ01</b>
+      <b style="--x:96%;--v:15s;--d:-8s">01ｶｷｸｹｺ10ｻｼｽｾｿ01ﾀﾁ</b>
+    </div>
+    <div class="rel">
+      <h2 id="t1">Cartelera</h2>
+      <p class="sub">Lo que se proyecta hoy, escrito como código. Elige una película y sigue el rastro.</p>
+      <div class="duo">
+        <div class="term">
+          <div class="barra"><i></i><i></i><i></i><span>cartelera.js</span></div>
+<pre class="cod" tabindex="0" aria-label="Lista de películas en formato de código"><span class="c">// sala 01 · sesión nocturna</span>
+<span class="k">const</span> cartelera = [
+  { titulo: <span class="s">"Ciudad de Neón"</span>,
+    genero: <span class="s">"Ciencia ficción"</span>, min: 128 },
+  { titulo: <span class="s">"El Último Códice"</span>,
+    genero: <span class="s">"Suspenso"</span>, min: 111 },
+  { titulo: <span class="s">"Sintética"</span>,
+    genero: <span class="s">"Drama"</span>, min: 97 },
+  { titulo: <span class="s">"Eco de Cristal"</span>,
+    genero: <span class="s">"Animación"</span>, min: 104 },
+];
+
+<span class="k">for</span> (<span class="k">const</span> p <span class="k">of</span> cartelera) {
+  <span class="f">proyectar</span>(p);
+}<span class="cur"></span></pre>
+        </div>
+        <article class="tarjeta">
+          <figure class="foto"><img src="fotos/photo-1554177255-61502b352de3.jpg" width="800" height="500" fetchpriority="high" alt="Letrero de neón rojo con forma de burbuja de diálogo y un corazón azul"></figure>
+          <div class="cuerpo">
+            <h3>Ciudad de Neón</h3>
+            <p>En una metrópolis que nunca apaga sus anuncios, una diseñadora publicitaria descubre que un cartel envía mensajes cifrados.</p>
+            <p class="meta">128 min · Ciencia ficción</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interfaz 2 · Estrenos (estilo Blade Runner) -->
+  <section id="p2" class="panel" aria-labelledby="t2">
+    <div class="sol" aria-hidden="true"></div>
+    <div class="suelo" aria-hidden="true"></div>
+    <div class="rel">
+      <div class="cabeza">
+        <div class="iris" aria-hidden="true"></div>
+        <div>
+          <h2 id="t2">Próximos estrenos</h2>
+          <p class="sub">Tres películas para marcar en el calendario antes de que se apaguen las luces.</p>
+        </div>
+      </div>
+      <div class="carteles">
+        <article class="cartel">
+          <figure class="foto"><img loading="lazy" src="fotos/photo-1516251193007-45ef944ab0c6.jpg" width="600" height="900" alt="Mano sosteniendo un smartphone con un perfil de Instagram frente a edificios altos"></figure>
+          <div class="txt"><h3>Horizonte Púrpura</h3><p class="ficha">Ciencia ficción<br>estreno: "2026-10-16"</p></div>
+        </article>
+        <article class="cartel">
+          <figure class="foto"><img loading="lazy" src="fotos/photo-1563986768494-4dee2763ff3f.jpg" width="600" height="900" alt="Persona trabajando con una laptop y un smartphone al mismo tiempo"></figure>
+          <div class="txt"><h3>Protocolo Lázaro</h3><p class="ficha">Thriller<br>estreno: "2026-10-30"</p></div>
+        </article>
+        <article class="cartel">
+          <figure class="foto"><img loading="lazy" src="fotos/photo-1532356884227-66d7c0e9e4c2.jpg" width="600" height="900" alt="Persona sosteniendo un teléfono negro"></figure>
+          <div class="txt"><h3>Memoria Analógica</h3><p class="ficha">Drama<br>estreno: "2026-11-13"</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interfaz 3 · Noticias (codex editorial) -->
+  <section id="p3" class="panel" aria-labelledby="t3">
+    <h2 id="t3">Noticias</h2>
+    <p class="sub">Comunicación, diseño publicitario y redes sociales: cómo se cuenta hoy una película.</p>
+    <div class="noticias">
+      <div>
+        <article class="tarjeta">
+          <figure class="foto"><img loading="lazy" src="fotos/photo-1611926653458-09294b3142bf.jpg" width="900" height="560" alt="Iconos de aplicaciones de redes sociales en la pantalla de un smartphone"></figure>
+          <div class="cuerpo">
+            <h3>Las redes sociales ya son el primer cartel de una película</h3>
+            <p>Antes de la valla en la calle, el tráiler llega al teléfono. Los equipos de marketing planean cada estreno pensando primero en la pantalla pequeña.</p>
+            <p class="meta">Análisis · 4 min de lectura</p>
+          </div>
+        </article>
+        <div class="term">
+          <h3 class="titulo-log">Últimas entradas</h3>
+          <ul class="log">
+            <li><time>09:12</time><p>Un festival de cine retrofuturista abre convocatoria de cortometrajes</p></li>
+            <li><time>08:40</time><p>Los estudios adelantan tráileres en redes antes de la campaña en calles</p></li>
+            <li><time>08:05</time><p>El neón vuelve a los carteles: diseñadores explican por qué</p></li>
+            <li><time>07:30</time><p>Salas y streaming discuten cuántos días separan un estreno de su llegada a casa</p></li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="term">
+          <div class="barra"><i></i><i></i><i></i><span>filtro.sql</span></div>
+<pre class="cod" tabindex="0" aria-label="Consulta que filtra las noticias por tema"><span class="c">-- filtro de noticias</span>
+<span class="k">SELECT</span> titular, hora
+  <span class="k">FROM</span> noticias
+ <span class="k">WHERE</span> tema <span class="k">IN</span> (
+       <span class="s">'estrenos'</span>,
+       <span class="s">'diseño'</span>,
+       <span class="s">'redes'</span>)
+ <span class="k">ORDER BY</span> hora <span class="k">DESC</span>;</pre>
+        </div>
+        <article class="tarjeta">
+          <figure class="foto"><img loading="lazy" src="fotos/photo-1611162617213-7d7a39e9b1d7.jpg" width="800" height="500" alt="Logotipo de Figma rodeado de iconos de redes sociales y plataformas de video"></figure>
+          <div class="cuerpo">
+            <h3>Diseño publicitario: del cartel a la pantalla</h3>
+            <p>Un mismo póster debe funcionar en una avenida y en una miniatura de 3 centímetros.</p>
+            <p class="meta">Diseño · 3 min de lectura</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>Contenido ficticio de demostración · Fotografías de Unsplash</p>
+</footer>
+</body>
+</html>

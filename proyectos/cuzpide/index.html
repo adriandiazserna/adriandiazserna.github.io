@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script src="../demo.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CUZPIDE — Sello discográfico independiente</title>
+<meta name="description" content="CUZPIDE, sello discográfico independiente desde Veracruz. Catálogo de artistas y contacto para demos y booking.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="cuzpide-logo.png">
+<link rel="stylesheet" href="estilos.css">
+<!-- Los tres archivos van en la MISMA carpeta: index.html, estilos.css, cuzpide-logo.png
+     PERSONALIZAR: busca estos comentarios para cambiar textos, artistas y contacto.
+     Las fotos vienen de images.unsplash.com (Licencia Unsplash: uso comercial, sin atribución). -->
+</head>
+<body>
+
+<a href="#inicio" class="czp-skip-link">Saltar al contenido principal</a>
+
+<header class="czp-header">
+  <div class="czp-container czp-header-bar">
+    <a href="#inicio" class="czp-brand">C<span class="czp-green">U</span><span class="czp-blue">Z</span>PIDE</a>
+
+    <input type="checkbox" id="nav-toggle" class="czp-nav-toggle" aria-label="Abrir menú">
+    <nav id="menu" class="czp-nav-panel" aria-label="Navegación principal">
+      <ul>
+        <li><a class="czp-nav-link" href="#inicio">Inicio</a></li>
+        <li><a class="czp-nav-link" href="#galeria">Galería de trabajos</a></li>
+        <li><a class="czp-nav-link" href="#comunicacion">Comunicación</a></li>
+        <li><a class="czp-nav-link" href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <label for="nav-toggle" class="czp-nav-toggle-label" aria-hidden="true"><span></span><span></span><span></span></label>
+  </div>
+</header>
+
+<main>
+
+  <section id="inicio" class="czp-hero" style="text-align:center">
+    <div class="czp-container">
+      <h1 class="czp-sr">CUZPIDE — Sello discográfico independiente</h1>
+      <img class="czp-hero-logo" src="cuzpide-logo.png" alt="CUZPIDE">
+      <p class="czp-muted czp-measure-xs czp-center czp-lead" style="margin-top:3rem">Sello discográfico independiente desde Veracruz.</p>
+      <p class="czp-muted czp-measure-xs czp-center" style="margin-top:.5rem">Editamos y acompañamos proyectos musicales con identidad propia.</p>
+      <div class="czp-actions">
+        <a href="#galeria" class="czp-btn">Ver catálogo</a>
+        <a href="#contacto" class="czp-link">Contacto</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA: el filtro funciona con radios + CSS (sin JavaScript) -->
+  <section id="galeria" class="czp-divider czp-section czp-work">
+    <div class="czp-container">
+      <h2 class="czp-section-title" style="margin-bottom:1rem">Galería de trabajos</h2>
+      <p class="czp-muted czp-measure" style="margin-bottom:2rem">Una muestra del catálogo: artistas y lanzamientos del sello.</p>
+
+      <div class="czp-filters" role="radiogroup" aria-label="Filtrar por formato">
+        <input type="radio" name="f" id="f0" class="czp-sr" checked><label for="f0">Todos</label>
+        <input type="radio" name="f" id="f1" class="czp-sr"><label for="f1">EP</label>
+        <input type="radio" name="f" id="f2" class="czp-sr"><label for="f2">LP</label>
+        <input type="radio" name="f" id="f3" class="czp-sr"><label for="f3">Sencillo</label>
+      </div>
+
+      <div class="czp-grid">
+        <!-- PERSONALIZAR: artista, lanzamiento, formato (data-f) y número de catálogo -->
+        <article class="czp-work-card czp-work-card--feature czp-work-card--blue" data-f="ep">
+          <div class="czp-work-top">
+            <svg class="czp-ridge" viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="0,12 8,12 8,4 26,4 26,9 34,9"/></svg>
+            <span class="czp-catalog">CZP-001</span>
+          </div>
+          <div><h3 style="margin-bottom:.25rem">Marea Negra</h3><p class="czp-release" style="margin:0">Altitud — EP</p></div>
+        </article>
+
+        <article class="czp-work-card czp-work-card--green" data-f="sencillo">
+          <div class="czp-work-top">
+            <svg class="czp-ridge" viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="0,10 10,10 10,5 22,5 22,11 34,11"/></svg>
+            <span class="czp-catalog">CZP-002</span>
+          </div>
+          <div><h3 style="margin-bottom:.25rem">Sombra Eléctrica</h3><p class="czp-release" style="margin:0">Voltaje — Sencillo</p></div>
+        </article>
+
+        <article class="czp-work-card czp-work-card--purple" data-f="lp">
+          <div class="czp-work-top">
+            <svg class="czp-ridge" viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="0,11 12,11 12,6 20,6 20,10 34,10"/></svg>
+            <span class="czp-catalog">CZP-003</span>
+          </div>
+          <div><h3 style="margin-bottom:.25rem">Río Cuarzo</h3><p class="czp-release" style="margin:0">Cristal — LP</p></div>
+        </article>
+
+        <article class="czp-work-card czp-work-card--blue" data-f="ep">
+          <div class="czp-work-top">
+            <svg class="czp-ridge" viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="0,9 9,9 9,3 25,3 25,9 34,9"/></svg>
+            <span class="czp-catalog">CZP-004</span>
+          </div>
+          <div><h3 style="margin-bottom:.25rem">Nación Fósil</h3><p class="czp-release" style="margin:0">Estratos — EP</p></div>
+        </article>
+
+        <article class="czp-work-card czp-work-card--green" data-f="lp">
+          <div class="czp-work-top">
+            <svg class="czp-ridge" viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="0,12 7,12 7,7 27,7 27,4 34,4"/></svg>
+            <span class="czp-catalog">CZP-005</span>
+          </div>
+          <div><h3 style="margin-bottom:.25rem">Luz de Cofre</h3><p class="czp-release" style="margin:0">Cumbre — LP</p></div>
+        </article>
+
+        <article class="czp-work-card czp-work-card--purple czp-work-card--full" data-f="sencillo">
+          <div class="czp-work-top">
+            <svg class="czp-ridge" viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="0,10 11,10 11,4 21,4 21,10 34,10"/></svg>
+            <span class="czp-catalog">CZP-006</span>
+          </div>
+          <div><h3 style="margin-bottom:.25rem">Verde Volcán</h3><p class="czp-release" style="margin:0">Ceniza — Sencillo</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMUNICACIÓN: fotos que se abren en un visor con :target -->
+  <section id="comunicacion" class="czp-divider czp-section">
+    <div class="czp-container">
+      <h2 class="czp-section-title" style="margin-bottom:1rem">Comunicación y promoción</h2>
+      <p class="czp-muted czp-measure" style="margin-bottom:3rem">Así damos a conocer cada lanzamiento. Toca una foto para verla grande.</p>
+
+      <div class="czp-tiles">
+        <a class="czp-tile" href="#v1" aria-label="Ampliar: Publicidad exterior">
+          <img src="fotos/photo-1699817361440-95aab3ddd170.jpg" alt="Calle de Nueva York con pantallas publicitarias" width="900" height="600" loading="lazy">
+          <div><h3>Publicidad exterior</h3><p>Pantallas y espectaculares para cada estreno.</p></div>
+        </a>
+        <a class="czp-tile" href="#v2" aria-label="Ampliar: Redes sociales">
+          <img src="fotos/photo-1656164631076-5052b84f9152.jpg" alt="Persona sosteniendo un teléfono con una red social abierta" width="900" height="1100" loading="lazy">
+          <div><h3>Redes sociales</h3><p>Contenido y campañas para Instagram y TikTok.</p></div>
+        </a>
+        <a class="czp-tile" href="#v3" aria-label="Ampliar: Diseño publicitario">
+          <img src="fotos/photo-1748266680052-668178f63e3a.jpg" alt="Gran anuncio publicitario sobre un edificio" width="900" height="600" loading="lazy">
+          <div><h3>Diseño publicitario</h3><p>Piezas gráficas con la identidad de cada artista.</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="czp-divider czp-section">
+    <div class="czp-container">
+      <h2 class="czp-section-title" style="margin-bottom:1rem">Datos de contacto</h2>
+      <p class="czp-muted czp-measure-sm" style="margin-bottom:3rem">¿Buscas sello para tu música? Envíanos tu demo, escuchamos todo.</p>
+
+      <!-- PERSONALIZAR: correos y ubicación reales -->
+      <dl class="czp-measure-sm" style="margin-bottom:3rem">
+        <div class="czp-contact-row"><dt>Correo</dt><dd><a href="mailto:hola@cuzpide.com">hola@cuzpide.com</a></dd></div>
+        <div class="czp-contact-row"><dt>Demos</dt><dd><a href="mailto:demos@cuzpide.com">demos@cuzpide.com</a></dd></div>
+        <div class="czp-contact-row"><dt>Ubicación</dt><dd>Xalapa, Veracruz, México</dd></div>
+      </dl>
+
+      <nav class="czp-social" aria-label="Redes y plataformas">
+        <a href="#">Instagram</a><a href="#">Bandcamp</a><a href="#">SoundCloud</a>
+      </nav>
+    </div>
+  </section>
+
+</main>
+
+<footer class="czp-footer">
+  <div class="czp-container">
+    <p>© 2026 CUZPIDE. Todos los derechos reservados.</p>
+    <p>Sello discográfico independiente.</p>
+  </div>
+</footer>
+
+<!-- Visores: se abren con :target y se cierran tocando en cualquier parte -->
+<a class="czp-lb" id="v1" href="#comunicacion" aria-label="Cerrar imagen"><b aria-hidden="true">×</b>
+  <figure><img src="fotos/photo-1699817361440-95aab3ddd170.jpg" alt="Calle de Nueva York con pantallas publicitarias" loading="lazy"><figcaption>Publicidad exterior</figcaption></figure></a>
+<a class="czp-lb" id="v2" href="#comunicacion" aria-label="Cerrar imagen"><b aria-hidden="true">×</b>
+  <figure><img src="fotos/photo-1656164631076-5052b84f9152.jpg" alt="Persona sosteniendo un teléfono con una red social abierta" loading="lazy"><figcaption>Redes sociales</figcaption></figure></a>
+<a class="czp-lb" id="v3" href="#comunicacion" aria-label="Cerrar imagen"><b aria-hidden="true">×</b>
+  <figure><img src="fotos/photo-1748266680052-668178f63e3a.jpg" alt="Gran anuncio publicitario sobre un edificio" loading="lazy"><figcaption>Diseño publicitario</figcaption></figure></a>
+
+</body>
+</html>

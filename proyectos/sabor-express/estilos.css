@@ -1,0 +1,223 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #c29999;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #d62828;
+    color: rgb(166, 140, 140);
+    text-align: center;
+    padding: 30px 20px;
+}
+
+header h1 {
+    margin: 10px 0;
+    font-size: 2.2rem;
+}
+
+header p {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.logo {
+    font-size: 3rem;
+    margin-bottom: 5px;
+}
+
+.btn-pedido {
+    display: inline-block;
+    margin-top: 15px;
+    background-color: white;
+    color: #d62828;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.btn-pedido:hover {
+    background-color: #f70000;
+    color: white;
+}
+
+main {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+section {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #d62828;
+    border-bottom: 2px solid #f77f00;
+    padding-bottom: 5px;
+    margin-top: 0;
+}
+
+.categoria {
+    color: #d62828;
+    margin-top: 25px;
+    border-left: 4px solid #f77f00;
+    padding-left: 8px;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.tarjeta {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: calc(33.333% - 10px);
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.tarjeta img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.tarjeta-cuerpo {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.tarjeta h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+}
+
+.tarjeta p {
+    color: #00000095;
+    font-size: 0.9rem;
+    margin: 0 0 12px 0;
+    flex-grow: 1;
+}
+
+.tarjeta-pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.precio {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #030303;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+input[readonly] {
+    background-color: #eaeaea;
+}
+
+#bloqueDireccion {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #c78033;
+    color: white;
+}
+
+td select, td input {
+    margin: 0;
+}
+
+button {
+    background-color: #d62828;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #a61e1e;
+}
+
+button.secundario {
+    background-color: #6c757d;
+}
+
+button.secundario:hover {
+    background-color: #545b62;
+}
+
+.tarjeta button {
+    margin: 0;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.nota {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 10px;
+}
+
+#resultado {
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 0.85rem;
+}

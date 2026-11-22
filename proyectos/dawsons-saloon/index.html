@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<script src="../demo.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dawson's Saloon | Veracruz</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ocean-blue': '#006d77', /* Warm ocean blue */
+                        'mahogany': '#4a2511',   /* Mahogany wood */
+                        'crimson': '#b22222',    /* Crimson red */
+                        'off-white': '#fdf5e6',  /* Soft white/sand */
+                        'dark-bg': '#121212'
+                    },
+                    fontFamily: {
+                        'serif': ['Merriweather', 'serif'],
+                        'sans': ['Open Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #fdf5e6;
+            color: #333;
+        }
+        
+        /* Custom styling for the hero section overlay */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 109, 119, 0.8), rgba(74, 37, 17, 0.8)), url('fotos/photo-1514933651103-005eec06c04b.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Gestalt Proximity: Form elements tight grouping */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem; /* Tight gap between label and input */
+            margin-bottom: 1.5rem; /* Larger gap between different form fields */
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #fdf5e6; }
+        ::-webkit-scrollbar-thumb { background: #4a2511; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b22222; }
+
+        .wood-texture {
+            background-color: #4a2511;
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%235c3018' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <nav class="fixed w-full z-50 bg-mahogany/95 backdrop-blur-sm text-off-white shadow-lg transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#inicio" class="block transition-transform hover:scale-105">
+                        <span class="font-serif text-2xl font-bold">Dawson's</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="hover:text-crimson transition-colors px-3 py-2 text-sm font-medium uppercase tracking-widest">Inicio</a>
+                    <a href="#menu" class="hover:text-crimson transition-colors px-3 py-2 text-sm font-medium uppercase tracking-widest">Menú</a>
+                    <a href="#chef" class="hover:text-crimson transition-colors px-3 py-2 text-sm font-medium uppercase tracking-widest">El Chef</a>
+                    <a href="#contacto" class="bg-crimson hover:bg-red-800 text-off-white px-5 py-2 rounded-md text-sm font-bold uppercase tracking-widest transition-colors shadow-md">Contacto</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-off-white hover:text-crimson focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-mahogany border-t border-red-900/50">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="mobile-link block px-3 py-2 text-base font-medium text-off-white hover:text-crimson uppercase tracking-wider">Inicio</a>
+                <a href="#menu" class="mobile-link block px-3 py-2 text-base font-medium text-off-white hover:text-crimson uppercase tracking-wider">Menú</a>
+                <a href="#chef" class="mobile-link block px-3 py-2 text-base font-medium text-off-white hover:text-crimson uppercase tracking-wider">El Chef</a>
+                <a href="#contacto" class="mobile-link block px-3 py-2 text-base font-medium text-crimson font-bold uppercase tracking-wider">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="inicio" class="hero-bg min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12">
+        <div class="max-w-4xl w-full bg-dark-bg/60 p-6 md:p-12 rounded-xl backdrop-blur-md border-2 border-crimson/50 shadow-2xl flex flex-col items-center">
+            
+            <h2 class="text-crimson font-sans font-bold tracking-[0.2em] uppercase text-sm md:text-base mb-4">Tradición Jarocha & Rock 'n' Roll</h2>
+            <h1 class="text-4xl md:text-6xl font-serif font-bold text-off-white mb-6 drop-shadow-lg">
+                Dawson's Saloon
+            </h1>
+            <div class="flex justify-center mb-6">
+                <div class="h-1 w-24 bg-crimson rounded-full"></div>
+            </div>
+            <p class="text-lg md:text-2xl text-off-white/90 mb-10 font-light max-w-2xl mx-auto">
+                Donde la rebeldía del clásico pub americano se encuentra con el alma y sabor inconfundible del Golfo de México.
+            </p>
+            <a href="#menu" class="inline-block bg-crimson hover:bg-red-800 text-off-white font-bold py-4 px-8 rounded-full transition-transform hover:scale-105 shadow-[0_0_15px_rgba(178,34,34,0.6)]">
+                Descubre el Menú
+            </a>
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 bg-off-white text-mahogany">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-ocean-blue font-bold tracking-widest uppercase text-sm">Delicias del Puerto</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-2 mb-4">Nuestro Menú</h2>
+                <div class="h-1 w-16 bg-crimson mx-auto rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
+                
+                <!-- Category: Entradas Jarochas -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-ocean-blue">
+                    <h3 class="text-2xl font-serif font-bold text-ocean-blue mb-8 border-b-2 border-gray-100 pb-2 flex items-center">
+                        <i class="fa-solid fa-anchor mr-3"></i> Botanas Costeñas
+                    </h3>
+                    
+                    <!-- Proximity: Grouping title, description, and price tightly -->
+                    <div class="space-y-8">
+                        <div class="menu-item flex flex-col gap-1">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Tostadas de Minilla de Pescado</h4>
+                                <span class="text-crimson font-bold ml-4 border-b border-crimson/30">$140</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">Auténtica receta veracruzana con guisado de pescado, aceitunas y alcaparras sobre tostadas crujientes.</p>
+                        </div>
+
+                        <div class="menu-item flex flex-col gap-1">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Calamares Fritos "San Juan de Ulúa"</h4>
+                                <span class="text-crimson font-bold ml-4 border-b border-crimson/30">$185</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">Aros de calamar rebosados con un toque de pimentón, servidos con aderezo tártaro de la casa.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category: Especialidades -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-mahogany">
+                    <h3 class="text-2xl font-serif font-bold text-mahogany mb-8 border-b-2 border-gray-100 pb-2 flex items-center">
+                        <i class="fa-solid fa-burger mr-3"></i> Clásicos del Saloon
+                    </h3>
+                    
+                    <div class="space-y-8">
+                        <div class="menu-item flex flex-col gap-1">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Hamburguesa Dawson's Rocker</h4>
+                                <span class="text-crimson font-bold ml-4 border-b border-crimson/30">$210</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">Doble carne de res artesanal, queso cheddar fundido, tocino crujiente y cebolla caramelizada en pan brioche.</p>
+                        </div>
+
+                        <div class="menu-item flex flex-col gap-1">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Alitas Habanero-Miel</h4>
+                                <span class="text-crimson font-bold ml-4 border-b border-crimson/30">$190</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">500g de alitas bañadas en nuestra salsa insignia que mezcla el dulce con el picante jarocho.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category: Pizzas -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-crimson lg:col-span-2">
+                    <h3 class="text-2xl font-serif font-bold text-crimson mb-8 border-b-2 border-gray-100 pb-2 flex items-center">
+                        <i class="fa-solid fa-pizza-slice mr-3"></i> Pizzas Artesanales
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                        <div class="menu-item flex flex-col gap-1">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">Pizza Clásica de Pepperoni</h4>
+                                <span class="text-crimson font-bold ml-4 border-b border-crimson/30">$220</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">La indiscutible favorita del pub. Masa delgada y crujiente, abundante queso mozzarella y rodajas de pepperoni premium.</p>
+                        </div>
+
+                        <div class="menu-item flex flex-col gap-1">
+                            <div class="flex justify-between items-baseline">
+                                <h4 class="text-lg font-bold">La Especial del Puerto</h4>
+                                <span class="text-crimson font-bold ml-4 border-b border-crimson/30">$280</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">Base de salsa de tomate asado, camarones pacotilla, pulpo, pimientos y un toque de aceite de chiles secos.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="chef" class="wood-texture text-off-white py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <!-- Profile image container -->
+                    <div class="relative w-72 h-72 md:w-96 md:h-96 rounded-full border-8 border-ocean-blue overflow-hidden shadow-2xl">
+                        <img src="fotos/photo-1577219491135-ce391730fb2c.jpg" alt="Chef Ricardo 'Rocky' Mendoza" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-ocean-blue/20 mix-blend-overlay"></div>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 text-center md:text-left">
+                    <span class="text-crimson font-bold tracking-widest uppercase text-sm mb-2 block">Mente Maestra</span>
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6 drop-shadow-md">Chef Ricardo "Rocky" Mendoza</h2>
+                    <p class="text-lg text-off-white/80 mb-6 leading-relaxed">
+                        Nacido en las vibrantes calles de Veracruz y forjado en las ruidosas cocinas de los pubs londinenses. "Rocky" trae a Dawson's Saloon una filosofía única: la comida debe ser tan reconfortante como un abrazo y tan audaz como un solo de guitarra.
+                    </p>
+                    <p class="text-lg text-off-white/80 leading-relaxed mb-8">
+                        <em>"Aquí no hacemos comida rápida, hacemos comida para disfrutar lento mientras la música suena fuerte. Desde nuestra clásica Pizza de Pepperoni hasta la Minilla, cada platillo rinde tributo a nuestras dos pasiones: el puerto y el rock."</em>
+                    </p>
+                    <div class="inline-flex items-center gap-4 text-ocean-blue bg-off-white px-6 py-3 rounded-lg font-bold shadow-lg">
+                        <i class="fa-solid fa-award text-2xl"></i>
+                        <span>15 Años de Experiencia Culinaria</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 bg-white text-mahogany">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-ocean-blue font-bold tracking-widest uppercase text-sm">Visítanos</span>
+                <h2 class="text-4xl md:text-5xl font-serif font-bold mt-2 mb-4">Contacto & Reservas</h2>
+                <div class="h-1 w-16 bg-crimson mx-auto rounded"></div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 bg-off-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+                
+                <!-- Contact Info Panel -->
+                <div class="w-full lg:w-1/3 wood-texture text-off-white p-10 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold mb-8">Información</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-location-dot mt-1 text-crimson text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg">Ubicación</h4>
+                                    <p class="text-sm text-off-white/80 mt-1 leading-relaxed">Blvd. Manuel Ávila Camacho 2805,<br>Ignacio Zaragoza,<br>Veracruz, Ver. C.P. 91910</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-phone mt-1 text-crimson text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg">Teléfono</h4>
+                                    <p class="text-sm text-off-white/80 mt-1">+52 (229) 393-0628</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <i class="fa-solid fa-clock mt-1 text-crimson text-xl"></i>
+                                <div>
+                                    <h4 class="font-bold text-lg">Horarios</h4>
+                                    <p class="text-sm text-off-white/80 mt-1">Mié - Dom: 17:30 - 02:00</p>
+                                    <p class="text-sm text-off-white/80">Lun - Mar: Cerrado</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 pt-8 border-t border-off-white/20">
+                        <h4 class="font-bold mb-4">Síguenos en Redes</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-crimson flex items-center justify-center hover:bg-white hover:text-crimson transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-crimson flex items-center justify-center hover:bg-white hover:text-crimson transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-crimson flex items-center justify-center hover:bg-white hover:text-crimson transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Panel -->
+                <div class="w-full lg:w-2/3 p-10">
+                    <h3 class="text-2xl font-serif font-bold text-mahogany mb-2">Envíanos un mensaje</h3>
+                    <p class="text-gray-600 mb-8 text-sm">¿Quieres reservar una mesa o tienes alguna duda? Escríbenos.</p>
+                    
+                    <form id="contact-form">
+                        <!-- Law of Proximity applied: Label is very close to its input (gap-1), separate fields have larger margins -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="form-group mb-0">
+                                <label for="name" class="text-sm font-bold text-mahogany">Nombre Completo</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-ocean-blue focus:border-transparent transition-shadow bg-white text-gray-800" placeholder="Ej. Juan Pérez">
+                            </div>
+                            <div class="form-group mb-0">
+                                <label for="email" class="text-sm font-bold text-mahogany">Correo Electrónico</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-ocean-blue focus:border-transparent transition-shadow bg-white text-gray-800" placeholder="tucorreo@ejemplo.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="asunto" class="text-sm font-bold text-mahogany">Asunto</label>
+                            <select id="asunto" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-ocean-blue focus:border-transparent transition-shadow bg-white text-gray-800">
+                                <option>Reserva de Mesa</option>
+                                <option>Evento Privado</option>
+                                <option>Comentarios o Dudas</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="text-sm font-bold text-mahogany">Tu Mensaje</label>
+                            <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-ocean-blue focus:border-transparent transition-shadow bg-white text-gray-800 resize-none" placeholder="Escribe aquí los detalles..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full md:w-auto px-8 py-3 bg-ocean-blue hover:bg-teal-700 text-white font-bold rounded-lg transition-colors shadow-md mt-2 flex items-center justify-center gap-2">
+                            <span>Enviar Mensaje</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+
+                        <!-- Custom message box replacing native alerts -->
+                        <div id="form-feedback" class="hidden mt-6 p-4 rounded-lg bg-green-100 text-green-800 border border-green-300 flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-xl"></i>
+                            <p class="text-sm font-bold">¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark-bg py-8 text-center border-t-4 border-crimson">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="text-off-white/60 text-sm">
+                &copy; 2026 Dawson's Saloon Veracruz. Todos los derechos reservados.
+            </p>
+            <p class="text-off-white/40 text-xs mt-2">
+                Diseño inspirado en el alma jarocha y el espíritu del puerto.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Form Handling without using alert()
+        const form = document.getElementById('contact-form');
+        const feedback = document.getElementById('form-feedback');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page reload
+            
+            // Hide the feedback if it was already showing, reset form
+            feedback.classList.add('hidden');
+            
+            // Simulate network request/processing time
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                // Show success feedback
+                feedback.classList.remove('hidden');
+                
+                // Reset button and form
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                form.reset();
+
+                // Hide feedback after 5 seconds
+                setTimeout(() => {
+                    feedback.classList.add('hidden');
+                }, 5000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

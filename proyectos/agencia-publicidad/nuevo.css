@@ -1,0 +1,237 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    counter-reset: seccion;
+    font-family: Georgia, "Times New Roman", serif;
+    background-color: #fafaf7;
+    color: #111;
+    margin: 0;
+    padding: 40px 15px 60px;
+    line-height: 1.5;
+}
+
+.contenedor {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+h1 {
+    margin: 0;
+    font-size: 34px;
+    font-weight: normal;
+    letter-spacing: -0.5px;
+}
+
+.sub {
+    margin: 4px 0 30px;
+    padding-bottom: 18px;
+    color: #777;
+    font-size: 16px;
+    border-bottom: 3px solid #111;
+}
+
+h2 {
+    counter-increment: seccion;
+    margin: 45px 0 14px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2::before {
+    content: "0" counter(seccion) "  ";
+    color: #e4572e;
+}
+
+#resumen h2::before {
+    content: "";
+}
+
+p {
+    margin: 0 0 16px;
+    color: #777;
+    font-size: 15px;
+}
+
+label {
+    display: block;
+    margin: 14px 0 2px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #777;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 8px 2px;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    color: #111;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #111;
+    border-radius: 0;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-bottom: 2px solid #e4572e;
+}
+
+input[readonly] {
+    color: #555;
+}
+
+.dos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+}
+
+.fila {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1.2fr 1.4fr;
+    gap: 5px 18px;
+    align-items: end;
+    padding: 6px 0 18px;
+    border-bottom: 1px solid #ddd;
+}
+
+.fila h4 {
+    grid-column: 1 / -1;
+    margin: 12px 0 0;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #e4572e;
+}
+
+.fila label {
+    margin-top: 0;
+}
+
+.total {
+    margin: 35px 0 20px;
+    padding-top: 15px;
+    text-align: right;
+    font-size: 30px;
+    border-top: 3px solid #111;
+}
+
+button {
+    margin: 4px 8px 4px 0;
+    padding: 14px 28px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    background-color: #111;
+    border: 2px solid #111;
+    border-radius: 0;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e4572e;
+    border-color: #e4572e;
+}
+
+button:disabled {
+    background-color: #bbb;
+    border-color: #bbb;
+    cursor: not-allowed;
+}
+
+button.gris {
+    color: #111;
+    background-color: transparent;
+}
+
+button.gris:hover {
+    color: #fff;
+    background-color: #111;
+    border-color: #111;
+}
+
+#resumen {
+    display: none;
+    margin-top: 35px;
+    padding: 5px 0 15px;
+    border-top: 3px solid #111;
+}
+
+#resumen table {
+    width: 100%;
+    margin: 10px 0;
+    border-collapse: collapse;
+}
+
+#resumen th {
+    padding: 8px 4px;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #777;
+    border-bottom: 1px solid #111;
+}
+
+#resumen td {
+    padding: 9px 4px;
+    border-bottom: 1px solid #ddd;
+}
+
+#mensaje {
+    display: none;
+    margin-top: 35px;
+    padding: 18px 0;
+    font-size: 20px;
+    text-align: center;
+    border-top: 3px solid #111;
+    border-bottom: 3px solid #111;
+}
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 25px 14px 40px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .dos {
+        grid-template-columns: 1fr;
+    }
+
+    .fila {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .fila > div:first-of-type {
+        grid-column: 1 / -1;
+    }
+
+    .total {
+        font-size: 25px;
+    }
+
+    button {
+        width: 100%;
+        margin: 6px 0;
+    }
+}

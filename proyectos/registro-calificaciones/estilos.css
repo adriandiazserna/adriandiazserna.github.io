@@ -1,0 +1,21 @@
+body { font-family: Arial, sans-serif; font-size: 14px; background: #eee; margin: 0; padding: 20px; }
+
+.caja { max-width: 600px; margin: auto; background: #f4f4f4; border: 1px solid #ccc; border-radius: 6px; overflow: hidden; }
+
+.titulo { background: #1a3c6e; color: white; padding: 12px 18px; }
+.titulo h1 { margin: 0; font-size: 17px; }
+.titulo p { margin: 0; font-size: 12px; }
+
+form { padding: 18px; }
+
+h2 { color: #2a6bb0; font-size: 15px; margin: 18px 0 6px; }
+
+label { display: block; margin-top: 8px; }
+
+input, select { width: 100%; padding: 7px; margin-top: 3px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+.materia { border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin-bottom: 8px; }
+
+button { width: 100%; margin-top: 16px; padding: 11px; background: #1a3c6e; color: white; border: 0; border-radius: 5px; font-size: 15px; cursor: pointer; }
+
+.oculto { display: none; }

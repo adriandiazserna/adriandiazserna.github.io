@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<script src="../demo.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asfalto ropa urbana</title>
+<meta name="description" content="Sudaderas, camisetas y cargos de Asfalto, serigrafiados en tiradas cortas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="mast">
+  <div class="container mast__row">
+    <nav class="mast__links" aria-label="Secciones">
+      <a href="#coleccion">Colección</a>
+      <a href="#como-se-hace">Cómo se hace</a>
+    </nav>
+    <a class="wordmark" href="#main" aria-label="Asfalto, inicio">Asfalto</a>
+    <div class="mast__act"><a class="btn" href="#comprar">Comprar</a></div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero__frame">
+        <figure class="hero__photo" data-slot="hero" data-alt="La ropa puesta en la calle: alguien con la sudadera junto a una valla o en un skatepark, foto directa, con flash o luz de farola">
+          <img src="img/calle.jpg"
+               sizes="100vw" width="1920" height="1440" alt="Siluetas de patinadores detrás de una valla metálica" style="object-position: 70% 55%" fetchpriority="high">
+        </figure>
+        <div class="hero__plate">
+          <h1 id="hero-title">Hecha para el asfalto</h1>
+          <p class="lead">Sudaderas, camisetas y cargos serigrafiados en <mark>tiradas cortas</mark>.</p>
+          <div class="hero__acts">
+            <a class="btn btn--light" href="#coleccion">Ver la colección</a>
+            <a class="btn btn--line" href="#como-se-hace">Cómo se hace</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="range" id="coleccion" aria-labelledby="range-title">
+    <div class="container">
+      <div class="head-split">
+        <h2 id="range-title">Seis piezas, ninguna de relleno</h2>
+        <p class="lead">Lo básico de un armario de calle, en negro y en hueso.</p>
+      </div>
+    </div>
+    <ul class="rail" tabindex="0" aria-label="La colección">
+      <li><a class="piece piece--ink" href="#comprar"><span class="piece__name">Sudadera pesada</span><span><span class="piece__line">Felpa gruesa, capucha doble y bolsillo canguro.</span></span></a></li>
+      <li><a class="piece" href="#comprar"><span class="piece__name">Camiseta boxy</span><span><span class="piece__line">Corte ancho y corto, cuello de canalé.</span></span></a></li>
+      <li><a class="piece" href="#comprar"><span class="piece__name">Cargo ancho</span><span><span class="piece__line">Sarga de algodón, seis bolsillos, bajo con cordón.</span></span></a></li>
+      <li><a class="piece" href="#comprar"><span class="piece__name">Chaqueta coach</span><span><span class="piece__line">Nailon cortavientos, broches a presión.</span></span></a></li>
+      <li><a class="piece" href="#comprar"><span class="piece__name">Gorra sin estructura</span><span><span class="piece__line">Lona lavada, cierre de hebilla.</span></span></a></li>
+      <li><a class="piece" href="#comprar"><span class="piece__name">Calcetín alto</span><span><span class="piece__line">Rizo en la planta, logo tejido.</span></span></a></li>
+    </ul>
+  </section>
+
+  <section class="made" id="como-se-hace" aria-labelledby="made-title">
+    <div class="container">
+      <h2 id="made-title">Del dibujo a la pantalla</h2>
+      <div class="made__grid">
+        <div class="made__visual">
+          <div class="made__frame" data-made>
+            <figure class="photo" data-step="1" data-slot="taller-1" data-alt="El taller: una pasada de rasero sobre la pantalla con la prenda debajo">
+              <img src="img/serigrafia.jpg"
+                   sizes="(min-width: 60rem) 55vw, 100vw" width="1280" height="853" alt="" loading="lazy" style="object-position: 50% 50%">
+            </figure>
+            <figure class="photo" data-step="3" data-slot="taller-2" data-alt="La costura: el pespunte del puño o del cuello bajo la aguja">
+              <img src="img/costura.jpg"
+                   sizes="(min-width: 60rem) 55vw, 100vw" width="1280" height="853" alt="" loading="lazy" style="object-position: 50% 55%">
+            </figure>
+          </div>
+        </div>
+        <ol class="made__steps">
+          <li data-step="1"><h3>La pantalla</h3><p>Cada diseño se revela en su propia pantalla de seda, un color por pantalla.</p></li>
+          <li data-step="2"><h3>La tinta</h3><p>Una pasada de rasero por color, a mano, prenda a prenda.</p></li>
+          <li data-step="3"><h3>La costura</h3><p>Cuellos y puños con doble pespunte, para que no cedan con los lavados.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement" aria-label="Lo que pedimos a cada prenda">
+    <div class="container">
+      <p>La calle es el probador.</p>
+    </div>
+  </section>
+
+  <section class="offer" id="comprar" aria-labelledby="offer-title">
+    <div class="container offer__grid">
+      <div class="offer__text">
+        <h2 id="offer-title">Sudadera pesada</h2>
+        <p class="lead">La pieza con la que empieza todo: felpa gruesa, capucha doble y corte amplio.</p>
+        <dl class="offer__facts">
+          <div><dt>Precio</dt><dd><span class="fill" data-fill="precio">precio por confirmar</span></dd></div>
+          <div><dt>Envío</dt><dd><span class="fill" data-fill="envio">plazo de envío por confirmar</span></dd></div>
+        </dl>
+      </div>
+      <form class="buy" data-endpoint="" novalidate>
+        <fieldset>
+          <legend>Color</legend>
+          <div class="choice choice--2">
+            <input type="radio" name="color" id="c-negro" value="negro" checked><label for="c-negro">Negro</label>
+            <input type="radio" name="color" id="c-hueso" value="hueso"><label for="c-hueso">Hueso</label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Talla</legend>
+          <div class="choice choice--6">
+            <input type="radio" name="talla" id="t-xs" value="XS"><label for="t-xs">XS</label>
+            <input type="radio" name="talla" id="t-s" value="S"><label for="t-s">S</label>
+            <input type="radio" name="talla" id="t-m" value="M"><label for="t-m">M</label>
+            <input type="radio" name="talla" id="t-l" value="L"><label for="t-l">L</label>
+            <input type="radio" name="talla" id="t-xl" value="XL"><label for="t-xl">XL</label>
+            <input type="radio" name="talla" id="t-xxl" value="XXL"><label for="t-xxl">XXL</label>
+          </div>
+        </fieldset>
+        <button class="btn btn--ink buy__send" type="submit">Añadir a la bolsa</button>
+        <p class="buy__help" id="buy-help" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <a class="foot__word" href="#main" aria-label="Asfalto, volver arriba">Asfalto</a>
+    <div class="foot__row">
+      <ul class="foot__links">
+        <li><a href="#coleccion">Colección</a></li>
+        <li><a href="#como-se-hace">Cómo se hace</a></li>
+        <li><a href="#comprar">Comprar</a></li>
+      </ul>
+      <p class="foot__credits" data-credits>Fotografías: <a href="https://commons.wikimedia.org/wiki/File:Br%C3%BCssel_Skater_Schattenriss-20081108-RM-164748.jpg">Ermell</a> (CC BY-SA 4.0), <a href="https://commons.wikimedia.org/wiki/File:Screen_printing_demonstration_at_TEDxUTM.jpg">Ahmad Ali Karim</a> (CC0), <a href="https://commons.wikimedia.org/wiki/File:Woman_sewing_a_face_mask_with_a_Singer_machine_14.jpg">Tadeáš Bednarz</a> (CC BY-SA 4.0), Wikimedia Commons.</p>
+      <p class="foot__legal">© 2026 Asfalto</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const form = document.querySelector('form.buy');
+  const help = form.querySelector('#buy-help');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.querySelector('input[name="talla"]:checked')) {
+      help.textContent = 'Falta la talla: elige una de XS a XXL.';
+      form.querySelector('input[name="talla"]').focus();
+      return;
+    }
+    if (!form.dataset.endpoint) { help.textContent = 'No se ha enviado nada: la tienda aún no está conectada.'; return; }
+    fetch(form.dataset.endpoint, { method: 'POST', body: new FormData(form) })
+      .then((r) => { help.textContent = r.ok ? 'Añadida a la bolsa.' : 'No ha salido bien. Prueba otra vez en un minuto.'; })
+      .catch(() => { help.textContent = 'No ha salido bien. Prueba otra vez en un minuto.'; });
+  });
+
+  const frame = document.querySelector('[data-made]');
+  if (frame && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (e.isIntersecting) frame.classList.toggle('is-3', e.target.dataset.step === '3');
+    }), { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('.made__steps > li').forEach((li) => io.observe(li));
+  }
+})();
+</script>
+
+<script>window.hallmarkSlots = (m) => { for (const [k, v] of Object.entries(m)) { const s = document.querySelector(`[data-slot="${k}"]`); if (!s) continue; const im = new Image(); im.src = typeof v === 'string' ? v : v.src; im.alt = (typeof v === 'object' && v.alt) || s.dataset.alt || ''; s.querySelectorAll(':scope > img').forEach((o) => o.remove()); s.prepend(im); } };
+document.querySelectorAll('[data-slot] img').forEach((i) => { if (i.complete && !i.naturalWidth) i.remove(); else i.addEventListener('error', () => i.remove(), { once: true }); });</script>
+</body>
+</html>

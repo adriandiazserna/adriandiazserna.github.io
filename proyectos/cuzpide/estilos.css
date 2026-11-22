@@ -1,0 +1,461 @@
+/* ============================================================
+   CUZPIDE — Hoja de estilos propia
+   Se carga DESPUÉS de Bootstrap para poder sobrescribirlo.
+
+   Índice
+   1. Tokens de marca
+   2. Base propia (sin Bootstrap)
+   3. Tipografía y utilidades propias
+   4. Navegación (menú plegable sin JavaScript)
+   5. Inicio / portada  ← aquí vive el logo grande
+   6. Galería de trabajos
+   7. Datos de contacto
+   8. Pie de página
+   9. Accesibilidad y movimiento reducido
+   ============================================================ */
+
+/* ============================================================
+   1. TOKENS DE MARCA
+   Colores muestreados directamente del logo (cofre de Perote /
+   trazo tipo Joy Division): negro, blanco, azul y verde.
+   ============================================================ */
+:root {
+  --czp-black: #000000;
+  --czp-white: #ffffff;
+  --czp-blue:  #1e8bcc;
+  --czp-green: #26a959;
+  --czp-purple: #8b5cf6;   /* morados añadidos */
+  --czp-violet: #4c1d95;
+  --czp-lilac:  #ddd6fe;
+
+  --czp-muted: rgba(255, 255, 255, 0.66);
+  --czp-line:  rgba(255, 255, 255, 0.16);
+  --czp-line-strong: rgba(255, 255, 255, 0.32);
+
+  --czp-font-display: "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --czp-font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --czp-header-h: 4.25rem;
+}
+
+/* ============================================================
+   2. BASE PROPIA (reemplaza a Bootstrap: sin dependencias)
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--czp-black); color: var(--czp-white); font-family: var(--czp-font-body); }
+h1, h2, h3, p, dl, dd, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--czp-header-h) + 0.25rem);
+}
+
+body {
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   3. TIPOGRAFÍA Y UTILIDADES PROPIAS
+   ============================================================ */
+h1, h2, h3,
+.czp-display {
+  font-family: var(--czp-font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.czp-section-title {
+  font-size: clamp(2rem, 4.5vw, 2.85rem);
+}
+
+.czp-muted { color: var(--czp-muted); }
+.czp-blue  { color: var(--czp-blue); }
+.czp-green { color: var(--czp-green); }
+
+/* Separador fino, reemplaza el borde gris por defecto de Bootstrap */
+.czp-divider { border-top: 1px solid var(--czp-line); }
+
+/* Espaciado de secciones (antes iba como style="" en el HTML) */
+.czp-section { padding-block: 7rem; }
+
+/* Anchos de lectura cómodos (antes iban como style="" en el HTML) */
+.czp-measure-xs { max-width: 30rem; }
+.czp-measure-sm { max-width: 32rem; }
+.czp-measure    { max-width: 34rem; }
+
+/* Botón de marca: contorno blanco que se invierte al pasar el cursor */
+.czp-btn {
+  display: inline-block;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.95rem;
+  color: var(--czp-white);
+  border: 1.5px solid var(--czp-white);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.czp-btn:hover,
+.czp-btn:focus-visible {
+  background-color: var(--czp-white);
+  color: var(--czp-black);
+}
+
+/* Enlace discreto subrayado */
+.czp-link {
+  font-size: 0.95rem;
+  color: var(--czp-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--czp-line-strong);
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.czp-link:hover,
+.czp-link:focus-visible {
+  color: var(--czp-blue);
+  border-color: var(--czp-blue);
+}
+
+/* Enlace "saltar al contenido" para navegación por teclado */
+.czp-skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 1100;
+  padding: 0.6rem 1rem;
+  background-color: var(--czp-white);
+  color: var(--czp-black);
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.czp-skip-link:focus { top: 1rem; }
+
+:focus-visible {
+  outline: 2px solid var(--czp-blue);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   4. NAVEGACIÓN
+   El menú móvil se abre con un checkbox oculto: Bootstrap oculta
+   ".collapse:not(.show)" y aquí se revierte cuando el checkbox
+   está marcado. Así se aprovecha el navbar de Bootstrap sin
+   cargar su JavaScript.
+   ============================================================ */
+.czp-header {
+  min-height: var(--czp-header-h);
+  background-color: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--czp-line);
+}
+
+/* Barra interna del header (antes iba como style="" en el HTML) */
+.czp-header-bar { min-height: var(--czp-header-h); }
+
+/* Marca escrita: la palabra CUZPIDE con los colores del logo */
+.czp-brand {
+  font-family: var(--czp-font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--czp-white);
+  text-decoration: none;
+}
+
+/* Marca con imagen.
+   OJO: esta clase está lista pero comentada en el HTML.
+   El PNG del logo es casi cuadrado (3585 x 2755) y la palabra
+   CUZPIDE ocupa solo la parte de abajo, así que reducido a la
+   altura del header se vuelve ilegible. Úsala solo si algún día
+   exportas una versión horizontal del logo (solo el texto). */
+.czp-brand-logo {
+  height: 2rem;
+  width: auto;
+  display: block;
+}
+
+.czp-nav-link {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--czp-white);
+  text-decoration: none;
+  opacity: 0.85;
+  padding: 0.35rem 0.1rem;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+}
+.czp-nav-link:hover,
+.czp-nav-link:focus-visible {
+  opacity: 1;
+  border-bottom-color: var(--czp-blue);
+}
+
+/* Checkbox accesible por teclado pero invisible */
+.czp-nav-toggle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.czp-nav-toggle-label {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 26px;
+  height: 22px;
+  cursor: pointer;
+}
+.czp-nav-toggle-label span {
+  display: block;
+  height: 1.5px;
+  background-color: var(--czp-white);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.czp-nav-toggle:focus-visible ~ .czp-nav-toggle-label {
+  outline: 2px solid var(--czp-blue);
+  outline-offset: 4px;
+}
+
+/* Abre el panel y transforma el icono en una "X" */
+.czp-nav-toggle:checked ~ .czp-nav-panel { display: block; }
+.czp-nav-toggle:checked ~ .czp-nav-toggle-label span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.czp-nav-toggle:checked ~ .czp-nav-toggle-label span:nth-child(2) { opacity: 0; }
+.czp-nav-toggle:checked ~ .czp-nav-toggle-label span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* En móvil el panel cae debajo de la barra, a todo lo ancho */
+@media (max-width: 767.98px) {
+  .czp-nav-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--czp-black);
+    border-bottom: 1px solid var(--czp-line);
+  }
+  .czp-nav-link {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--czp-line);
+  }
+  .czp-nav-link:hover,
+  .czp-nav-link:focus-visible { border-bottom-color: var(--czp-line); }
+}
+
+@media (min-width: 768px) {
+  /* A partir de tablet el toggle desaparece y el menú es horizontal */
+  .czp-nav-toggle-label { display: none; }
+}
+
+/* ============================================================
+   5. INICIO / PORTADA
+   Aquí va el logo grande. Su fondo negro se funde con el de la
+   página, así que se ve como una portada de disco.
+   ============================================================ */
+.czp-hero {
+  padding-top: calc(var(--czp-header-h) + 5rem);
+  padding-bottom: 5rem;
+}
+
+.czp-hero-logo {
+  display: block;
+  width: 100%;
+  max-width: 34rem;   /* no crece más allá de esto en pantallas grandes */
+  height: auto;       /* mantiene la proporción original del PNG */
+  margin-inline: auto;/* lo centra horizontalmente */
+}
+
+/* ============================================================
+   6. GALERÍA DE TRABAJOS
+   Fichas de catálogo con filete superior de color alternado.
+   ============================================================ */
+.czp-work-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  height: 100%;
+  padding: 1.75rem;
+  background-color: var(--czp-black);
+  border: 1px solid var(--czp-line);
+  border-top: 3px solid var(--czp-accent, var(--czp-blue));
+}
+
+.czp-work-card--feature { min-height: 260px; }
+
+.czp-work-card--blue  { --czp-accent: var(--czp-blue); }
+.czp-work-card--green { --czp-accent: var(--czp-green); }
+
+/* Glifo de línea inspirado en el trazo del logo */
+.czp-ridge {
+  width: 34px;
+  height: 16px;
+  color: var(--czp-accent, var(--czp-blue));
+}
+
+.czp-catalog {
+  font-size: 0.75rem;
+  color: var(--czp-muted);
+  letter-spacing: 0.03em;
+}
+
+.czp-work-card h3 { font-size: 1.3rem; }
+
+.czp-work-card .czp-release {
+  font-size: 0.95rem;
+  color: var(--czp-muted);
+}
+
+@media (min-width: 992px) {
+  .czp-work-card h3 { font-size: 1.5rem; }
+}
+
+/* ============================================================
+   7. DATOS DE CONTACTO
+   ============================================================ */
+.czp-contact-row {
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--czp-line);
+}
+.czp-contact-row:first-child { border-top: 1px solid var(--czp-line); }
+
+.czp-contact-row dt {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--czp-muted);
+}
+
+.czp-contact-row dd { font-size: 1.05rem; }
+
+.czp-contact-row dd a {
+  color: var(--czp-white);
+  text-decoration: none;
+  border-bottom: 1px solid var(--czp-line-strong);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.czp-contact-row dd a:hover,
+.czp-contact-row dd a:focus-visible {
+  color: var(--czp-blue);
+  border-color: var(--czp-blue);
+}
+
+.czp-social a {
+  font-size: 0.95rem;
+  color: var(--czp-white);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--czp-accent, var(--czp-blue));
+  padding-bottom: 2px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.czp-social a:hover,
+.czp-social a:focus-visible {
+  color: var(--czp-green);
+  border-color: var(--czp-green);
+}
+.czp-social a:nth-child(2) { --czp-accent: var(--czp-green); }
+
+/* ============================================================
+   8. PIE DE PÁGINA
+   ============================================================ */
+.czp-footer {
+  border-top: 1px solid var(--czp-line);
+  padding-block: 1.75rem;
+}
+.czp-footer p {
+  font-size: 0.85rem;
+  color: var(--czp-muted);
+}
+
+/* ============================================================
+   9. MOVIMIENTO REDUCIDO
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}
+
+/* ============================================================
+   10. MAQUETACIÓN PROPIA (antes la hacía Bootstrap)
+   ============================================================ */
+.czp-container { width: min(100% - 2.5rem, 72rem); margin-inline: auto; }
+.czp-center { margin-inline: auto; }
+.czp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.czp-header { position: fixed; inset: 0 0 auto; z-index: 1000; }
+.czp-header-bar { display: flex; align-items: center; justify-content: space-between; position: relative; }
+.czp-nav-panel { display: none; }
+@media (min-width: 768px) {
+  .czp-nav-panel { display: block; }
+  .czp-nav-panel ul { display: flex; gap: 2rem; }
+}
+.czp-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.5rem; margin-top: 3rem; }
+.czp-lead { font-size: 1.25rem; }
+.czp-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; grid-auto-flow: dense; }
+.czp-work-card { grid-column: span 12; }
+.czp-work-card--purple { --czp-accent: var(--czp-purple); }
+@media (min-width: 768px) { .czp-work-card { grid-column: span 6; } .czp-work-card--feature { grid-column: span 12; } }
+@media (min-width: 992px) { .czp-work-card { grid-column: span 4; } .czp-work-card--feature { grid-column: span 8; } }
+.czp-work-card--full { grid-column: 1 / -1; }
+.czp-work-top { display: flex; justify-content: space-between; align-items: flex-start; }
+.czp-contact-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.czp-contact-row dd { text-align: right; }
+.czp-social { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.czp-social a:nth-child(3) { --czp-accent: var(--czp-purple); }
+.czp-footer p { margin: 0; }
+
+/* ============================================================
+   11. INTERACCIÓN SIN JAVASCRIPT
+   Filtro (radios + :has), visor de fotos (:target)
+   ============================================================ */
+.czp-filters { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.5rem; }
+.czp-filters label {
+  padding: .5rem 1.15rem; cursor: pointer; border: 1px solid var(--czp-line-strong);
+  border-radius: 2rem; transition: background-color .2s, border-color .2s;
+}
+.czp-filters label:hover { border-color: var(--czp-purple); }
+.czp-filters input:checked + label { background: var(--czp-purple); border-color: var(--czp-purple); }
+.czp-filters input:focus-visible + label { outline: 2px solid var(--czp-blue); outline-offset: 3px; }
+.czp-work:has(#f1:checked) .czp-work-card:not([data-f="ep"]),
+.czp-work:has(#f2:checked) .czp-work-card:not([data-f="lp"]),
+.czp-work:has(#f3:checked) .czp-work-card:not([data-f="sencillo"]) { display: none; }
+
+.czp-tiles { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+.czp-tile {
+  position: relative; display: block; min-height: 22rem; overflow: hidden; isolation: isolate;
+  background: var(--czp-violet); border-top: 3px solid var(--czp-purple); text-decoration: none;
+}
+.czp-tile img {
+  position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1); mix-blend-mode: multiply; transition: filter .4s, transform .5s;
+}
+.czp-tile:hover img, .czp-tile:focus-visible img { filter: none; mix-blend-mode: normal; transform: scale(1.05); }
+.czp-tile::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(0,0,0,.85), transparent 60%); }
+.czp-tile div { position: absolute; left: 1.5rem; right: 1.5rem; bottom: 1.5rem; }
+.czp-tile h3 { font-size: 1.5rem; }
+.czp-tile p { color: var(--czp-muted); font-size: .95rem; }
+
+.czp-lb {
+  display: none; position: fixed; inset: 0; z-index: 1100; padding: 1.5rem;
+  place-items: center; background: rgba(20, 6, 45, .96); text-decoration: none;
+}
+.czp-lb:target { display: grid; }
+.czp-lb figure { margin: 0; max-width: 60rem; }
+.czp-lb img { max-height: 76svh; margin-inline: auto; object-fit: contain; }
+.czp-lb figcaption { margin-top: 1rem; text-align: center; color: var(--czp-muted); }
+.czp-lb b { position: absolute; top: 1rem; right: 1.5rem; font-size: 2.5rem; font-weight: 300; }

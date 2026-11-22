@@ -1,0 +1,759 @@
+<!doctype html><html><head>
+<script src="../demo.js"></script><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Asfalto Streetwear</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: hoja de catálogo enmarcada. Header con tabs de género, menú lateral flotante
+   con scroll, grid de 1px, bloques separados por líneas, ángulos rectos en todo. */
+:root{
+  --bg:#ffffff;       /* fondo */
+  --fg:#0b0b0c;       /* texto */
+  --mute:#63636b;     /* texto secundario, gris con sesgo frío */
+  --line:#18181b;     /* líneas estructurales de 1px */
+  --soft:#dcdce0;     /* líneas tenues / rayado de celdas vacías */
+  --photo:#e4e4e7;    /* fondo neutro de fotografía */
+  --out:#7a7a82;      /* contorno de prendas */
+  --accent:#2230ff;   /* único acento: foco, etiquetas "nuevo", pin del mapa */
+  --display:'Archivo','Arial Narrow',Impact,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --gut:max(16px,env(safe-area-inset-left,0px));
+  --hh:64px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#000000;--fg:#f2f2f4;--mute:#8e8e98;--line:#46464c;--soft:#222226;
+    --photo:#1d1d20;--out:#85858c;--accent:#8e97ff;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#000000;--fg:#f2f2f4;--mute:#8e8e98;--line:#46464c;--soft:#222226;
+  --photo:#1d1d20;--out:#85858c;--accent:#8e97ff;color-scheme:dark;
+}
+*{box-sizing:border-box;border-radius:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--fg);
+  font:13px/1.55 var(--mono);
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+button,input,select{font:inherit;color:inherit;border-radius:0;-webkit-appearance:none;appearance:none}
+button{cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.frame{max-width:1680px;margin:0 auto;border-left:1px solid var(--line);border-right:1px solid var(--line);min-width:0}
+.lab,.eyebrow,.gh{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);margin:0}
+section[id],footer[id]{scroll-margin-top:calc(var(--hh) + env(safe-area-inset-top,0px))}
+
+/* ---------- Header ---------- */
+.top{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);
+  display:grid;grid-template-columns:1fr auto;
+  grid-template-areas:"logo tools" "tabs tabs" "search search";
+  border-bottom:1px solid var(--line);
+}
+.logo{grid-area:logo;display:flex;align-items:center;padding:0 16px;min-height:52px;text-decoration:none;
+  font:900 26px/1 var(--display);font-stretch:62%;letter-spacing:.01em;text-transform:uppercase}
+.tools{grid-area:tools;display:flex;border-left:1px solid var(--line)}
+.tool{display:flex;align-items:center;gap:8px;padding:0 14px;min-height:52px;background:none;border:0;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.tool + .tool{border-left:1px solid var(--line)}
+.tool:hover{background:var(--fg);color:var(--bg)}
+.tool svg{width:16px;height:16px;flex:none}
+.badge{border:1px solid currentColor;padding:0 5px;min-width:26px;text-align:center;font-size:11px;line-height:18px}
+.tabs{grid-area:tabs;display:flex;border-top:1px solid var(--line)}
+.tab{flex:1;display:flex;align-items:baseline;justify-content:center;gap:8px;padding:14px 8px;min-height:48px;
+  background:none;border:0;font:800 15px/1 var(--display);font-stretch:75%;text-transform:uppercase;letter-spacing:.04em}
+.tab + .tab{border-left:1px solid var(--line)}
+.tab .n{font:400 10px var(--mono);letter-spacing:.06em;color:var(--mute)}
+.tab:hover{background:var(--soft)}
+.tab[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+.tab[aria-selected="true"] .n{color:inherit;opacity:.7}
+.search{grid-area:search;display:flex;align-items:center;gap:10px;padding:0 16px;border-top:1px solid var(--line);min-height:48px}
+.search svg{width:15px;height:15px;flex:none;color:var(--mute)}
+.search input{flex:1;min-width:0;background:none;border:0;outline:0;padding:12px 0;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.search input::placeholder{color:var(--mute)}
+.search:focus-within{outline:2px solid var(--accent);outline-offset:-2px}
+.search kbd{font:400 10px var(--mono);border:1px solid var(--line);padding:0 5px;color:var(--mute)}
+@media (min-width:1024px){
+  .top{grid-template-columns:220px 1fr minmax(200px,300px) auto;grid-template-areas:"logo tabs search tools"}
+  .logo{border-right:1px solid var(--line)}
+  .tabs{border-top:0;border-right:1px solid var(--line)}
+  .search{border-top:0;border-right:1px solid var(--line)}
+  .tools{border-left:0}
+}
+
+/* ---------- Hero / manifiesto ---------- */
+.hero-head{padding:28px 16px 22px;border-bottom:1px solid var(--line);display:grid;gap:18px}
+.hero-head h1{margin:0;font:900 clamp(3.4rem,13.5vw,10.5rem)/.84 var(--display);font-stretch:62%;text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance}
+.hero-head h1 i{font-style:normal;color:var(--accent)}
+.hero-head .eyebrow{display:flex;flex-wrap:wrap;gap:6px 18px}
+.trio{display:grid;grid-template-columns:1fr;border-bottom:1px solid var(--line)}
+.hcell{padding:20px 16px 24px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.hcell + .hcell{border-top:1px solid var(--line)}
+.hcell .lab{padding-bottom:10px;border-bottom:1px solid var(--line)}
+.hcell p{margin:0;max-width:52ch}
+.rowlink{display:flex;justify-content:space-between;align-items:center;width:100%;background:none;border:0;border-bottom:1px solid var(--soft);
+  padding:10px 0;text-align:left;font:700 15px/1.2 var(--display);font-stretch:85%;text-transform:uppercase;letter-spacing:.03em}
+.rowlink span{font:400 11px var(--mono);color:var(--mute);letter-spacing:.06em}
+.rowlink:hover{padding-left:8px;color:var(--accent)}
+.hcell address{font-style:normal}
+.hcell dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
+.hcell dt{color:var(--mute);text-transform:uppercase;font-size:11px;letter-spacing:.08em;padding-top:1px}
+.hcell dd{margin:0}
+@media (min-width:860px){
+  .trio{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hcell + .hcell{border-top:0;border-left:1px solid var(--line)}
+}
+
+/* ---------- Shell: menú lateral + contenido ---------- */
+.shell{display:grid;grid-template-columns:minmax(0,1fr)}
+.side{display:flex;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:thin}
+.grp{display:contents}
+.grp.nav,.side-note{display:none}
+.gh{display:none}
+.list{display:flex}
+.chip{flex:none;display:flex;align-items:baseline;gap:8px;white-space:nowrap;background:none;border:0;border-right:1px solid var(--line);
+  padding:12px 14px;min-height:44px;text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.chip span{color:var(--mute);font-size:10px}
+.chip:hover{background:var(--soft)}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.chip[aria-pressed="true"] span{color:inherit;opacity:.7}
+@media (min-width:1024px){
+  .shell{grid-template-columns:220px minmax(0,1fr)}
+  .side{
+    display:block;overflow-y:auto;overflow-x:hidden;border-bottom:0;border-right:1px solid var(--line);
+    position:sticky;top:calc(var(--hh) + env(safe-area-inset-top,0px));
+    height:calc(100vh - var(--hh) - env(safe-area-inset-top,0px));
+    align-self:start;
+  }
+  .grp{display:block;border-bottom:1px solid var(--line)}
+  .grp.nav,.side-note{display:block}
+  .gh{display:block;padding:14px 16px 8px}
+  .list{display:block;padding-bottom:8px}
+  .chip{display:flex;justify-content:space-between;width:100%;border-right:0;padding:9px 16px}
+  .grp.nav a{display:block;padding:9px 16px;text-decoration:none;text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+  .grp.nav a:hover{background:var(--soft)}
+  .grp.nav{padding-bottom:8px}
+  .side-note{padding:16px;color:var(--mute);font-size:11px;line-height:1.6}
+}
+.main{min-width:0}
+
+/* ---------- Catálogo ---------- */
+.cat-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;padding:20px 16px;border-bottom:1px solid var(--line)}
+.cat-head h2{margin:6px 0 0;font:900 clamp(2.6rem,8vw,5.2rem)/.88 var(--display);font-stretch:62%;text-transform:uppercase}
+.ctrl{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+#count{color:var(--mute);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.select{position:relative;border:1px solid var(--line)}
+.select select{background:var(--bg);border:0;padding:9px 34px 9px 12px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;min-height:40px}
+.select::after{content:"";position:absolute;right:12px;top:50%;width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+@media (min-width:760px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1280px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.grid.is-empty{display:block}
+.cell{background:var(--bg);display:flex;flex-direction:column;min-width:0}
+.cell-top{display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
+.cell-top span:last-child{color:var(--mute)}
+.photo{position:relative;aspect-ratio:4/5;max-width:100%;background:var(--photo);display:grid;place-items:center;padding:9% 11%;overflow:hidden}
+.photo svg{width:100%;height:100%;transition:transform .25s ease}
+.cell:hover .photo svg{transform:translateY(-4px) scale(1.03)}
+.cell:hover .cell-top span:first-child{color:var(--accent)}
+.tags{position:absolute;left:8px;top:8px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.tag{background:var(--bg);border:1px solid var(--line);padding:1px 6px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;line-height:16px}
+.tag.new{border-color:var(--accent);color:var(--accent)}
+.cell.is-out .photo svg{opacity:.4}
+.cell-bot{padding:10px;display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line);flex:1;justify-content:space-between}
+.cell-bot h3{margin:0;font:600 14px/1.25 var(--display);font-stretch:100%;text-wrap:balance}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.price{font-weight:500;font-variant-numeric:tabular-nums}
+.btn{background:none;border:1px solid var(--fg);padding:7px 10px;min-height:34px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.btn:hover:not(:disabled){background:var(--fg);color:var(--bg)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.solid{background:var(--fg);color:var(--bg);width:100%;min-height:46px}
+.btn.solid:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.filler{background:repeating-linear-gradient(135deg,transparent 0 7px,var(--soft) 7px 8px),var(--bg)}
+.empty{background:var(--bg);padding:56px 16px;text-align:center;display:grid;gap:14px;justify-items:center}
+.empty p{margin:0;max-width:40ch}
+
+/* ---------- Tienda física ---------- */
+.store{border-bottom:1px solid var(--line)}
+.store-head{padding:20px 16px;border-bottom:1px solid var(--line)}
+.store-head h2{margin:6px 0 0;font:900 clamp(2.2rem,6vw,4rem)/.9 var(--display);font-stretch:62%;text-transform:uppercase}
+.store-body{display:grid;grid-template-columns:minmax(0,1fr)}
+.map{background:var(--photo);border-bottom:1px solid var(--line);min-width:0}
+.map svg{display:block;width:100%;height:auto;max-width:100%}
+.facts{margin:0;display:grid;min-width:0}
+.facts div{padding:14px 16px;border-bottom:1px solid var(--line)}
+.facts div:last-child{border-bottom:0}
+.facts dt{color:var(--mute);font-size:11px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:4px}
+.facts dd{margin:0}
+@media (min-width:860px){
+  .store-body{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+  .map{border-bottom:0;border-right:1px solid var(--line)}
+}
+
+/* ---------- Footer ---------- */
+.foot{border-top:1px solid var(--line)}
+.fgrid{display:grid;grid-template-columns:minmax(0,1fr);border-bottom:1px solid var(--line)}
+.fcell{padding:20px 16px 24px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.fcell + .fcell{border-top:1px solid var(--line)}
+.fcell address{font-style:normal}
+.fcell p{margin:0}
+.fcell ul{list-style:none;margin:0;padding:0}
+.fcell li a{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--soft);text-decoration:none;text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+.fcell li a:hover{color:var(--accent)}
+details{border-bottom:1px solid var(--soft)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;padding:8px 0;text-transform:uppercase;letter-spacing:.06em;font-size:11px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+"}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 12px;color:var(--mute);max-width:46ch}
+.nl{display:flex;border:1px solid var(--fg)}
+.nl input{flex:1;min-width:0;background:var(--bg);border:0;padding:12px;outline:0;font-size:13px}
+.nl input:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.nl button{background:var(--fg);color:var(--bg);border:0;padding:0 16px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.nl button:hover{background:var(--accent)}
+#nl-msg{min-height:1.5em;color:var(--mute);font-size:11px}
+@media (min-width:860px){
+  .fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fcell:nth-child(2){border-top:0;border-left:1px solid var(--line)}
+  .fcell:nth-child(n+3){border-top:1px solid var(--line)}
+  .fcell:nth-child(4){border-left:1px solid var(--line)}
+}
+@media (min-width:1180px){
+  .fgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .fcell + .fcell{border-top:0;border-left:1px solid var(--line)}
+  .fcell:nth-child(n+3){border-top:0}
+}
+.wordmark{padding:16px 16px 0;border-bottom:1px solid var(--line);overflow:hidden}
+.wordmark svg{display:block;width:100%;height:auto}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 18px;padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+
+/* ---------- Carrito ---------- */
+.veil{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:40}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);z-index:50;background:var(--bg);border-left:1px solid var(--line);
+  display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);animation:slide .22s ease-out}
+@keyframes slide{from{transform:translateX(24px);opacity:0}to{transform:none;opacity:1}}
+.d-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.d-head h2{margin:0;padding:0 16px;font:900 22px/1 var(--display);font-stretch:62%;text-transform:uppercase}
+.d-head button{background:none;border:0;border-left:1px solid var(--line);padding:0 16px;min-height:52px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.d-head button:hover{background:var(--fg);color:var(--bg)}
+.d-list{list-style:none;margin:0;padding:0;overflow:auto;flex:1}
+.crow{display:grid;grid-template-columns:72px minmax(0,1fr) auto;border-bottom:1px solid var(--line)}
+.cthumb{background:var(--photo);border-right:1px solid var(--line);padding:8px;display:grid;place-items:center}
+.cthumb svg{width:100%;height:auto}
+.cinfo{padding:10px 12px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.cinfo b{font:600 13px/1.25 var(--display);font-stretch:100%}
+.cinfo small{color:var(--mute);font-size:11px;letter-spacing:.06em}
+.qty{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.qty button{background:none;border:1px solid var(--line);min-width:30px;min-height:30px;font-size:12px}
+.qty button:hover{background:var(--fg);color:var(--bg)}
+.qty .q{border-top:1px solid var(--line);border-bottom:1px solid var(--line);min-width:30px;line-height:28px;text-align:center}
+.qty .rm{margin-left:10px;border:0;text-decoration:underline;color:var(--mute);font-size:11px}
+.cprice{padding:10px 12px;font-variant-numeric:tabular-nums;font-weight:500;white-space:nowrap}
+.d-empty{padding:40px 16px;display:grid;gap:14px;justify-items:start}
+.d-foot{border-top:1px solid var(--line);padding:14px 16px;padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));display:grid;gap:10px}
+.sub{display:flex;justify-content:space-between;font-weight:500;font-variant-numeric:tabular-nums}
+.d-foot small{color:var(--mute)}
+.toast{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;background:var(--fg);color:var(--bg);
+  padding:10px 14px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;max-width:calc(100% - 32px)}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<div class="frame">
+
+<header class="top" id="top">
+  <a class="logo" href="#manifiesto" aria-label="Asfalto, ir al manifiesto">Asfalto</a>
+  <div class="tabs" role="tablist" aria-label="Sección de la tienda">
+    <button class="tab" role="tab" id="tab-hombre" data-view="hombre" aria-selected="true">Hombre <span class="n" data-n="hombre"></span></button>
+    <button class="tab" role="tab" id="tab-mujer" data-view="mujer" aria-selected="false" tabindex="-1">Mujer <span class="n" data-n="mujer"></span></button>
+    <button class="tab" role="tab" id="tab-ninos" data-view="ninos" aria-selected="false" tabindex="-1">Niños <span class="n" data-n="ninos"></span></button>
+  </div>
+  <form class="search" role="search" id="search-form">
+    <label class="sr" for="q">Buscar productos</label>
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="6.5" cy="6.5" r="4.5"/><path d="M10 10l5 5"/></svg>
+    <input id="q" type="search" placeholder="Buscar en Hombre" autocomplete="off">
+    <kbd aria-hidden="true">/</kbd>
+  </form>
+  <div class="tools">
+    <button class="tool" id="theme" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 2a6 6 0 0 1 0 12z" fill="currentColor"/></svg><span id="theme-label">Modo oscuro</span></button>
+    <button class="tool" id="cart-btn" type="button" aria-haspopup="dialog" aria-label="Abrir carrito"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2.5 5h11l-1 9h-9z"/><path d="M5.5 5V4a2.5 2.5 0 0 1 5 0v1"/></svg><span class="badge" id="cart-n">00</span></button>
+  </div>
+</header>
+
+<section id="manifiesto" class="hero" aria-labelledby="h1">
+  <div class="hero-head">
+    <p class="eyebrow"><span>Asfalto Streetwear</span><span>Est. 2019</span><span>Tiradas de 120 piezas</span></p>
+    <h1 id="h1">Calle<br>sin ruido<i>.</i></h1>
+  </div>
+  <div class="trio">
+    <div class="hcell">
+      <h2 class="lab">Quiénes somos</h2>
+      <p>Asfalto empezó en 2019 como un taller de serigrafía en un garaje. Hoy es una marca de ropa urbana que diseña con tres reglas: línea recta, color neutro y tirada corta. Cada modelo se produce en 120 piezas y no se repite.</p>
+      <p>Vestimos a hombres, mujeres y niños con las mismas prendas, a escala.</p>
+    </div>
+    <div class="hcell">
+      <h2 class="lab">Qué vendemos</h2>
+      <div id="sell-list"></div>
+    </div>
+    <div class="hcell">
+      <h2 class="lab">Dónde estamos</h2>
+      <address>
+        <b>Tienda Asfalto</b><br>
+        Calle Ejemplo 123, Col. Roma Norte<br>
+        06700 Ciudad de México, CDMX
+      </address>
+      <dl>
+        <dt>Horario</dt><dd>Lun–Sáb 11:00–20:00</dd>
+        <dt>Envíos</dt><dd>Global, a más de 40 países</dd>
+      </dl>
+      <p><a href="#tienda">Ver mapa y cómo llegar →</a></p>
+    </div>
+  </div>
+</section>
+
+<div class="shell">
+  <aside class="side" aria-label="Navegación y filtros">
+    <div class="grp nav">
+      <h2 class="gh">Ir a</h2>
+      <a href="#manifiesto">Manifiesto</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#tienda">Tienda física</a>
+      <a href="#boletin">Boletín</a>
+    </div>
+    <div class="grp">
+      <h2 class="gh">Categoría</h2>
+      <div class="list" id="cat-list"></div>
+    </div>
+    <div class="grp">
+      <h2 class="gh">Temporada</h2>
+      <div class="list" id="season-list"></div>
+    </div>
+    <p class="side-note">FW26 está en tienda. SS26 llega en enero. Las piezas exclusivas no se reponen.</p>
+  </aside>
+
+  <main class="main">
+    <section id="catalogo" aria-labelledby="cat-title">
+      <div class="cat-head">
+        <div>
+          <p class="eyebrow" id="cat-eyebrow">Men / Male</p>
+          <h2 id="cat-title">Hombre</h2>
+        </div>
+        <div class="ctrl">
+          <span id="count" aria-live="polite"></span>
+          <label class="sr" for="sort">Ordenar por</label>
+          <div class="select">
+            <select id="sort">
+              <option value="rel">Orden de colección</option>
+              <option value="asc">Precio: menor a mayor</option>
+              <option value="desc">Precio: mayor a menor</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="grid" id="grid" role="list"></div>
+    </section>
+
+    <section id="tienda" class="store" aria-labelledby="store-title">
+      <div class="store-head">
+        <p class="eyebrow">Tienda física / Envío global</p>
+        <h2 id="store-title">Dónde estamos</h2>
+      </div>
+      <div class="store-body">
+        <div class="map">
+          <svg viewBox="0 0 600 400" role="img" aria-label="Plano de referencia con la ubicación de la tienda en el cruce de Calle Ejemplo y Avenida Central">
+            <defs>
+              <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="var(--out)" stroke-width="1" opacity=".5"/></pattern>
+            </defs>
+            <rect width="600" height="400" fill="var(--photo)"/>
+            <g stroke="var(--bg)" stroke-width="16" fill="none">
+              <path d="M0 90H600M0 200H600M0 310H600"/>
+              <path d="M120 0V400M300 0V400M470 0V400"/>
+              <path d="M0 400L220 0" stroke-width="10"/>
+            </g>
+            <rect x="320" y="218" width="130" height="74" fill="url(#hatch)" stroke="var(--out)"/>
+            <text x="385" y="258" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--mute)" letter-spacing="1">PARQUE</text>
+            <g font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--mute)" letter-spacing="1">
+              <text x="12" y="84">CALLE NORTE</text>
+              <text x="12" y="194">CALLE EJEMPLO</text>
+              <text x="12" y="304">CALLE SUR</text>
+              <text transform="translate(114 396) rotate(-90)">AV. CENTRAL</text>
+            </g>
+            <g>
+              <circle cx="300" cy="200" r="22" fill="var(--accent)" opacity=".18"/>
+              <circle cx="300" cy="200" r="8" fill="var(--accent)"/>
+              <rect x="316" y="150" width="104" height="26" fill="var(--bg)" stroke="var(--line)"/>
+              <text x="368" y="167" text-anchor="middle" font-family="Archivo, Impact, sans-serif" font-weight="900" font-size="15" letter-spacing=".5" fill="var(--fg)" style="font-stretch:75%">ASFALTO</text>
+              <path d="M316 176L304 193" stroke="var(--line)"/>
+            </g>
+            <g transform="translate(556 44)" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--fg)">
+              <path d="M0 -20L8 6H-8z" fill="var(--fg)"/>
+              <text x="0" y="22" text-anchor="middle">N</text>
+            </g>
+            <g transform="translate(24 366)" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--fg)">
+              <path d="M0 0H100M0 -4V4M50 -4V4M100 -4V4" stroke="var(--fg)" fill="none"/>
+              <text x="0" y="16">0</text><text x="100" y="16" text-anchor="end">100 m</text>
+            </g>
+            <text x="576" y="388" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" fill="var(--mute)" letter-spacing=".8">PLANO DE REFERENCIA, NO A ESCALA</text>
+          </svg>
+        </div>
+        <dl class="facts">
+          <div><dt>Dirección</dt><dd>Calle Ejemplo 123, esquina Av. Central<br>Col. Roma Norte, 06700 Ciudad de México</dd></div>
+          <div><dt>Horario</dt><dd>Lunes a sábado, 11:00 a 20:00<br>Domingo, 12:00 a 18:00</dd></div>
+          <div><dt>Cómo llegar</dt><dd>A dos cuadras del Metro Insurgentes. Estacionamiento público en la misma calle.</dd></div>
+          <div><dt>Envío global</dt><dd>A más de 40 países con DHL Express, de 3 a 7 días hábiles. En México, de 2 a 4 días hábiles.</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="foot" id="boletin" aria-label="Pie de página">
+  <div class="fgrid">
+    <div class="fcell">
+      <h2 class="lab">Tienda física</h2>
+      <address>
+        Calle Ejemplo 123, Col. Roma Norte<br>
+        06700 Ciudad de México, CDMX<br>
+        Lun–Sáb 11:00–20:00 · Dom 12:00–18:00
+      </address>
+      <p><a href="#tienda">Ver mapa →</a></p>
+    </div>
+    <div class="fcell">
+      <h2 class="lab">Políticas</h2>
+      <div>
+        <details><summary>Envíos</summary><p>Envío nacional en 2 a 4 días hábiles, gratis desde $2,500 MXN. Envío internacional con DHL Express en 3 a 7 días hábiles; impuestos de importación a cargo del destinatario.</p></details>
+        <details><summary>Cambios y devoluciones</summary><p>Tienes 30 días desde la entrega, con etiquetas y sin uso. Las piezas exclusivas solo admiten cambio de talla.</p></details>
+        <details><summary>Privacidad y términos</summary><p>Usamos tu correo solo para pedidos y, si lo pides, para el boletín. Puedes darte de baja desde cualquier mensaje.</p></details>
+      </div>
+    </div>
+    <div class="fcell">
+      <h2 class="lab">Redes</h2>
+      <ul>
+        <li><a href="#" aria-label="Instagram de Asfalto">Instagram <span>@asfalto</span></a></li>
+        <li><a href="#" aria-label="TikTok de Asfalto">TikTok <span>@asfalto</span></a></li>
+        <li><a href="#" aria-label="YouTube de Asfalto">YouTube <span>/asfalto</span></a></li>
+        <li><a href="#" aria-label="WhatsApp de Asfalto">WhatsApp <span>Pedidos</span></a></li>
+      </ul>
+    </div>
+    <div class="fcell">
+      <h2 class="lab">Boletín</h2>
+      <p>Avisos de drops y reposiciones. Un correo al mes, sin relleno.</p>
+      <form id="nl" novalidate>
+        <label class="sr" for="nl-email">Correo electrónico</label>
+        <div class="nl">
+          <input id="nl-email" type="email" inputmode="email" placeholder="TU@CORREO.COM" autocomplete="email" required>
+          <button type="submit">Suscribirme</button>
+        </div>
+        <p id="nl-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+  <div class="wordmark" aria-hidden="false">
+    <svg viewBox="0 0 1000 200" role="img" aria-label="Asfalto">
+      <text x="0" y="178" textLength="1000" lengthAdjust="spacingAndGlyphs" fill="currentColor" font-family="Archivo, Impact, sans-serif" font-weight="900" font-size="250" style="font-stretch:62%">ASFALTO</text>
+    </svg>
+  </div>
+  <div class="legal"><span>© 2026 Asfalto. Todos los derechos reservados.</span><span>Precios en MXN, IVA incluido</span></div>
+</footer>
+
+</div>
+
+<div class="veil" id="veil" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" hidden>
+  <div class="d-head">
+    <h2 id="d-title">Carrito</h2>
+    <button type="button" id="d-close">Cerrar</button>
+  </div>
+  <ul class="d-list" id="d-list"></ul>
+  <div class="d-foot" id="d-foot"></div>
+</aside>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var root=document.documentElement;
+  var fmt=function(n){return '$'+n.toLocaleString('es-MX')+' MXN'};
+  var pad=function(n){return String(n).padStart(2,'0')};
+  var norm=function(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()};
+
+  /* Tonos de prenda: [relleno, trazo de detalle] */
+  var TONES={bone:['#ecebe6','#9a998f'],ash:['#9b9ba0','#5a5a60'],ink:['#131315','#74747c'],stone:['#bdb5a6','#7d7668'],olive:['#5d6250','#9aa086']};
+  var D='fill="none" stroke="var(--gs)" stroke-width=".9"';
+  /* Siluetas. Sustituye art(p) por <img src="foto.jpg"> cuando tengas fotografía real. */
+  var SHAPES={
+    tee:{d:'M30 14L8 30l9 16 11-5v67h44V41l11 5 9-16-22-16Q50 30 30 14z'},
+    hoodie:{d:'M32 14Q50 4 68 14l25 22-8 30-11-6v48H26V60L15 66 7 36z',x:'<path '+D+' d="M36 15Q50 40 64 15"/><path '+D+' d="M38 80h24l4 18H34z"/>'},
+    jacket:{d:'M34 14l16 8 16-8 27 16-4 48-12-2v32H23V76L11 78 7 30z',x:'<path '+D+' d="M50 22v86M30 86h10M60 86h10"/>'},
+    pants:{d:'M27 10h46l5 102H54L50 46l-4 66H22z',x:'<path '+D+' d="M27 18h46M30 62h9v12h-9zM61 62h9v12h-9z"/>'},
+    shorts:{d:'M26 22h48l8 62H54L50 52l-4 32H18z',x:'<path '+D+' d="M26 30h48"/>'},
+    skirt:{d:'M34 20h32l24 80H10z',x:'<path '+D+' d="M34 28h32M42 28l-12 72M58 28l12 72"/>'},
+    dress:{d:'M38 8h8q4 14 8 0h8l5 32-7 10 28 60H12l28-60-7-10z',x:'<path '+D+' d="M42 54h16"/>'},
+    cap:{d:'M20 72Q20 40 52 38q30 2 30 34z',x:'<path fill="var(--gf)" stroke="var(--out)" d="M14 72h84q6 10-8 12H16z"/><path '+D+' d="M52 38v34"/>'},
+    beanie:{d:'M22 70Q20 34 50 30q30 4 28 40z',x:'<rect fill="var(--gf)" stroke="var(--out)" x="18" y="68" width="64" height="16"/><path '+D+' d="M28 68v16M38 68v16M48 68v16M58 68v16M68 68v16"/>'},
+    shoe:{d:'M6 80V64q22-2 30-22l14 4q8 12 26 16 20 2 20 18v20H6z',x:'<path '+D+' d="M6 94h90M40 48l6 6M47 44l6 6M54 48l5 5"/>'},
+    bag:{d:'M24 46h52l6 60H18z',x:'<path fill="none" stroke="var(--out)" stroke-width="2" d="M36 46Q36 20 50 20t14 26"/><path '+D+' d="M24 62h52"/>'}
+  };
+  var VIEWS={
+    hombre:{label:'Hombre',pre:'HB',eyebrow:'Men / Male',ph:'Buscar en Hombre'},
+    mujer:{label:'Mujer',pre:'MJ',eyebrow:'Women / Female',ph:'Buscar en Mujer'},
+    ninos:{label:'Niños',pre:'NN',eyebrow:'Kids / Infantil',ph:'Buscar en Niños'}
+  };
+  var CATS=[['todo','Todo'],['ropa','Ropa'],['calzado','Calzado'],['accesorios','Accesorios'],['exclusivo','Colecciones exclusivas']];
+  var SEASONS=[['todo','Todas'],['FW26','FW26'],['SS26','SS26']];
+  /* [nombre, silueta, tono, categoría, temporada, precio MXN, etiqueta, exclusivo, agotado] */
+  var RAW={
+    hombre:[
+      ['Hoodie Boxy Heavyweight','hoodie','ink','ropa','FW26',1890,'Nuevo'],
+      ['Tee Oversize Serigrafía 19','tee','bone','ropa','FW26',790],
+      ['Cargo Pant Utilitario','pants','ash','ropa','FW26',1590],
+      ['Chamarra Nylon Coach','jacket','stone','ropa','FW26',2290],
+      ['Gorra Cinco Paneles','cap','ink','accesorios','FW26',590],
+      ['Tenis Bloque 01','shoe','bone','calzado','FW26',3290,'Últimas 12',true],
+      ['Shorts Nylon Técnico','shorts','olive','ropa','SS26',890],
+      ['Bolso Crossbody Cordura','bag','ink','accesorios','SS26',1190,'',false,true]
+    ],
+    mujer:[
+      ['Hoodie Cropped Pesado','hoodie','bone','ropa','FW26',1790,'Nuevo'],
+      ['Tee Baby Fit Logo','tee','ink','ropa','SS26',690],
+      ['Falda Cargo Mini','skirt','olive','ropa','FW26',1190],
+      ['Bomber Satín','jacket','ash','ropa','FW26',2490,'Últimas 24',true],
+      ['Vestido Camisero Largo','dress','stone','ropa','SS26',1890],
+      ['Tenis Bloque 02','shoe','ash','calzado','FW26',3290],
+      ['Beanie Doble Capa','beanie','ink','accesorios','FW26',490],
+      ['Tote Lona Gruesa','bag','bone','accesorios','SS26',890,'Últimas 12',true]
+    ],
+    ninos:[
+      ['Hoodie Mini Heavy','hoodie','ash','ropa','FW26',990,'Nuevo'],
+      ['Tee Mini Serigrafía','tee','bone','ropa','SS26',450],
+      ['Jogger Cargo Kids','pants','ink','ropa','FW26',790],
+      ['Chamarra Coach Mini','jacket','olive','ropa','FW26',1290],
+      ['Gorra Mini Cinco Paneles','cap','stone','accesorios','SS26',390],
+      ['Tenis Bloque Junior','shoe','bone','calzado','FW26',1890,'',true],
+      ['Shorts Jersey Kids','shorts','ash','ropa','SS26',450],
+      ['Mochila Mini','bag','ink','accesorios','FW26',690,'',false,true]
+    ]
+  };
+  var DATA={},ALL={};
+  Object.keys(RAW).forEach(function(v){
+    DATA[v]=RAW[v].map(function(r,i){
+      var p={id:VIEWS[v].pre+'-'+String(i+1).padStart(3,'0'),view:v,name:r[0],shape:r[1],tone:r[2],cat:r[3],season:r[4],price:r[5],tag:r[6]||'',ex:!!r[7],out:!!r[8]};
+      ALL[p.id]=p;return p;
+    });
+  });
+
+  var state={view:'hombre',cat:'todo',season:'todo',q:'',sort:'rel'};
+  var cart={};
+
+  function art(p){
+    var s=SHAPES[p.shape],t=TONES[p.tone];
+    return '<svg viewBox="0 0 100 120" aria-hidden="true" focusable="false" style="--gf:'+t[0]+';--gs:'+t[1]+'">'+
+      '<ellipse cx="50" cy="113" rx="34" ry="2.6" fill="var(--out)" opacity=".35"/>'+
+      '<g fill="var(--gf)" stroke="var(--out)" stroke-width=".9" stroke-linejoin="round"><path d="'+s.d+'"/>'+(s.x||'')+'</g></svg>';
+  }
+  function matchCat(p,c){return c==='todo'||(c==='exclusivo'?p.ex:p.cat===c)}
+  function list(){
+    var q=norm(state.q.trim());
+    var a=DATA[state.view].filter(function(p){
+      return matchCat(p,state.cat)&&(state.season==='todo'||p.season===state.season)&&
+        (!q||norm(p.name+' '+p.id+' '+p.cat+' '+p.season).indexOf(q)>-1);
+    });
+    if(state.sort==='asc')a=a.slice().sort(function(x,y){return x.price-y.price});
+    if(state.sort==='desc')a=a.slice().sort(function(x,y){return y.price-x.price});
+    return a;
+  }
+  function cell(p){
+    var tags=(p.tag||p.out||p.ex)?'<div class="tags">'+
+      (p.out?'<span class="tag">Agotado</span>':(p.tag?'<span class="tag'+(p.tag==='Nuevo'?' new':'')+'">'+p.tag+'</span>':''))+
+      (p.ex?'<span class="tag">Exclusivo</span>':'')+'</div>':'';
+    return '<article class="cell'+(p.out?' is-out':'')+'" role="listitem">'+
+      '<div class="cell-top"><span>'+p.id+'</span><span>'+p.season+'</span></div>'+
+      '<div class="photo">'+art(p)+tags+'</div>'+
+      '<div class="cell-bot"><h3>'+p.name+'</h3><div class="row"><span class="price">'+fmt(p.price)+'</span>'+
+      '<button class="btn add" type="button" data-id="'+p.id+'"'+(p.out?' disabled':'')+'>'+(p.out?'Agotado':'+ Añadir')+'</button></div></div></article>';
+  }
+  function fill(){
+    var g=$('#grid');
+    $$('.filler',g).forEach(function(n){n.remove()});
+    if(g.classList.contains('is-empty'))return;
+    var cols=getComputedStyle(g).gridTemplateColumns.split(' ').length;
+    var n=$$('.cell',g).length,r=(cols-n%cols)%cols;
+    for(var i=0;i<r;i++){var d=document.createElement('div');d.className='cell filler';d.setAttribute('aria-hidden','true');g.appendChild(d)}
+  }
+  function renderGrid(){
+    var a=list(),g=$('#grid');
+    if(!a.length){
+      g.classList.add('is-empty');
+      g.innerHTML='<div class="empty"><p>No hay modelos con esa búsqueda o esos filtros en '+VIEWS[state.view].label+'.</p><button class="btn" type="button" id="clear">Quitar filtros</button></div>';
+    }else{
+      g.classList.remove('is-empty');
+      g.innerHTML=a.map(cell).join('');
+      fill();
+    }
+    $('#count').textContent=pad(a.length)+' de '+pad(DATA[state.view].length)+' modelos';
+  }
+  function renderSide(){
+    var items=DATA[state.view];
+    $('#cat-list').innerHTML=CATS.map(function(c){
+      var n=items.filter(function(p){return matchCat(p,c[0])}).length;
+      return '<button type="button" class="chip" data-cat="'+c[0]+'" aria-pressed="'+(state.cat===c[0])+'">'+c[1]+'<span>'+pad(n)+'</span></button>';
+    }).join('');
+    $('#season-list').innerHTML=SEASONS.map(function(s){
+      var n=items.filter(function(p){return s[0]==='todo'||p.season===s[0]}).length;
+      return '<button type="button" class="chip" data-season="'+s[0]+'" aria-pressed="'+(state.season===s[0])+'">'+s[1]+'<span>'+pad(n)+'</span></button>';
+    }).join('');
+  }
+  function renderSell(){
+    var all=[].concat(DATA.hombre,DATA.mujer,DATA.ninos);
+    var rows=[['Ropa urbana','ropa'],['Calzado','calzado'],['Accesorios','accesorios'],['Colecciones exclusivas','exclusivo']];
+    $('#sell-list').innerHTML=rows.map(function(r){
+      var n=all.filter(function(p){return matchCat(p,r[1])}).length;
+      return '<button type="button" class="rowlink" data-go="'+r[1]+'">'+r[0]+'<span>'+pad(n)+' modelos</span></button>';
+    }).join('');
+  }
+  function setView(v,write){
+    state.view=v;
+    $$('.tab').forEach(function(t){var on=t.dataset.view===v;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1});
+    $('#cat-title').textContent=VIEWS[v].label;
+    $('#cat-eyebrow').textContent=VIEWS[v].eyebrow;
+    $('#q').placeholder=VIEWS[v].ph;
+    renderSide();renderGrid();
+    if(write){try{history.replaceState(null,'','#'+v)}catch(e){}}
+  }
+
+  /* ---- Eventos del catálogo ---- */
+  $('.tabs').addEventListener('click',function(e){
+    var t=e.target.closest('.tab');if(t)setView(t.dataset.view,true);
+  });
+  $('.tabs').addEventListener('keydown',function(e){
+    var keys=Object.keys(VIEWS),i=keys.indexOf(state.view);
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+      e.preventDefault();
+      var n=keys[(i+(e.key==='ArrowRight'?1:keys.length-1))%keys.length];
+      setView(n,true);$('#tab-'+n).focus();
+    }
+  });
+  $('.side').addEventListener('click',function(e){
+    var b=e.target.closest('.chip');if(!b)return;
+    if(b.dataset.cat)state.cat=b.dataset.cat;
+    if(b.dataset.season)state.season=b.dataset.season;
+    renderSide();renderGrid();
+  });
+  $('#sell-list').addEventListener('click',function(e){
+    var b=e.target.closest('.rowlink');if(!b)return;
+    state.cat=b.dataset.go;state.season='todo';state.q='';$('#q').value='';
+    renderSide();renderGrid();
+    $('#catalogo').scrollIntoView();
+  });
+  $('#sort').addEventListener('change',function(e){state.sort=e.target.value;renderGrid()});
+  $('#search-form').addEventListener('submit',function(e){e.preventDefault()});
+  $('#q').addEventListener('input',function(e){state.q=e.target.value;renderGrid()});
+  document.addEventListener('keydown',function(e){
+    var tag=(e.target.tagName||'').toLowerCase();
+    if(e.key==='/'&&tag!=='input'&&tag!=='select'&&tag!=='textarea'){e.preventDefault();$('#q').focus()}
+    if(e.key==='Escape'&&!$('#drawer').hidden)closeCart();
+  });
+  $('#grid').addEventListener('click',function(e){
+    var a=e.target.closest('.add');
+    if(a){addToCart(a.dataset.id);return}
+    if(e.target.id==='clear'){state.cat='todo';state.season='todo';state.q='';$('#q').value='';renderSide();renderGrid()}
+  });
+  var rz;window.addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(fill,80)});
+
+  /* ---- Carrito ---- */
+  var lastFocus=null,tt;
+  function toast(msg){var t=$('#toast');t.textContent=msg;t.hidden=false;clearTimeout(tt);tt=setTimeout(function(){t.hidden=true},1800)}
+  function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();toast('Añadido: '+ALL[id].name)}
+  function renderCart(){
+    var ids=Object.keys(cart),count=0,total=0;
+    ids.forEach(function(id){count+=cart[id];total+=cart[id]*ALL[id].price});
+    $('#cart-n').textContent=pad(count);
+    $('#cart-btn').setAttribute('aria-label','Abrir carrito, '+count+' artículos');
+    var L=$('#d-list'),F=$('#d-foot');
+    if(!ids.length){
+      L.innerHTML='<li class="d-empty"><p>Tu carrito está vacío.</p><button class="btn" type="button" id="d-keep">Seguir viendo</button></li>';
+      F.innerHTML='';return;
+    }
+    L.innerHTML=ids.map(function(id){
+      var p=ALL[id];
+      return '<li class="crow"><div class="cthumb">'+art(p)+'</div><div class="cinfo"><b>'+p.name+'</b><small>'+p.id+' · '+p.season+'</small>'+
+        '<div class="qty"><button type="button" data-act="dec" data-id="'+id+'" aria-label="Quitar una unidad">−</button><span class="q">'+cart[id]+'</span>'+
+        '<button type="button" data-act="inc" data-id="'+id+'" aria-label="Agregar una unidad">+</button>'+
+        '<button type="button" class="rm" data-act="rm" data-id="'+id+'">Quitar</button></div></div>'+
+        '<span class="cprice">'+fmt(p.price*cart[id])+'</span></li>';
+    }).join('');
+    F.innerHTML='<div class="sub"><span>Subtotal</span><span>'+fmt(total)+'</span></div>'+
+      '<small>Envío e impuestos se calculan al pagar.</small>'+
+      '<button class="btn solid" type="button" id="checkout">Finalizar compra</button>'+
+      '<small id="co-msg" aria-live="polite"></small>';
+  }
+  function openCart(){
+    lastFocus=document.activeElement;
+    $('#veil').hidden=false;$('#drawer').hidden=false;$('#d-close').focus();
+  }
+  function closeCart(){
+    $('#veil').hidden=true;$('#drawer').hidden=true;
+    if(lastFocus&&lastFocus.focus)lastFocus.focus();
+  }
+  $('#cart-btn').addEventListener('click',openCart);
+  $('#d-close').addEventListener('click',closeCart);
+  $('#veil').addEventListener('click',closeCart);
+  $('#drawer').addEventListener('click',function(e){
+    var b=e.target.closest('button');if(!b)return;
+    if(b.id==='d-keep'){closeCart();return}
+    if(b.id==='checkout'){$('#co-msg').textContent='Esto es una maqueta: el pago todavía no está conectado.';return}
+    var id=b.dataset.id,act=b.dataset.act;if(!id)return;
+    if(act==='inc')cart[id]++;
+    if(act==='dec'){cart[id]--;if(cart[id]<1)delete cart[id]}
+    if(act==='rm')delete cart[id];
+    renderCart();
+  });
+
+  /* ---- Tema ---- */
+  function isDark(){var t=root.getAttribute('data-theme');return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
+  function themeLabel(){$('#theme-label').textContent=isDark()?'Modo claro':'Modo oscuro'}
+  try{var saved=localStorage.getItem('asfalto-theme');if(saved)root.setAttribute('data-theme',saved)}catch(e){}
+  $('#theme').addEventListener('click',function(){
+    var next=isDark()?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('asfalto-theme',next)}catch(e){}
+    themeLabel();
+  });
+  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',themeLabel)}catch(e){}
+
+  /* ---- Boletín ---- */
+  $('#nl').addEventListener('submit',function(e){
+    e.preventDefault();
+    var m=$('#nl-msg'),v=$('#nl-email').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){m.textContent='Escribe un correo válido, por ejemplo nombre@correo.com.';return}
+    m.textContent='Listo. En la tienda real, este formulario se conecta a tu servicio de correo.';
+    $('#nl-email').value='';
+  });
+
+  /* ---- Altura del header para el menú lateral ---- */
+  function setHH(){root.style.setProperty('--hh',$('#top').offsetHeight+'px')}
+  window.addEventListener('resize',setHH);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){setHH();fill()});
+
+  /* ---- Arranque ---- */
+  Object.keys(VIEWS).forEach(function(v){$('[data-n="'+v+'"]').textContent=pad(DATA[v].length)});
+  renderSell();renderCart();themeLabel();
+  var h=location.hash.slice(1);
+  setView(VIEWS[h]?h:'hombre',false);
+  setHH();
+  window.addEventListener('hashchange',function(){var x=location.hash.slice(1);if(VIEWS[x]&&x!==state.view)setView(x,false)});
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,307 @@
+<title>Portafolio web de Adrián Díaz Serna</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: hoja de contactos. Cada proyecto es un cuadro numerado por orden cronológico, agrupado por tipo de trabajo. */
+:root{
+  --paper:#EEEEEA; --sheet:#F8F8F5; --ink:#15171C; --muted:#5A5E68; --rule:#D4D4CE; --accent:#2A44E0;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#101216; --sheet:#181B21; --ink:#ECECE8; --muted:#A0A4AE; --rule:#2B2F37; --accent:#8A9BFF; color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#101216; --sheet:#181B21; --ink:#ECECE8; --muted:#A0A4AE; --rule:#2B2F37; --accent:#8A9BFF; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+header.top{padding-block:clamp(40px,7vw,88px) 32px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-stretch:68%;font-weight:850;font-size:clamp(3rem,10vw,7.5rem);line-height:.88;letter-spacing:-.01em;margin:.25em 0 .3em;text-transform:uppercase;text-wrap:balance}
+h1 span{color:var(--accent)}
+.intro{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px;align-items:end}
+.intro p{max-width:60ch;margin:0;font-size:1.06rem}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-family:var(--mono);font-size:.82rem;margin:0}
+.meta dt{color:var(--muted)} .meta dd{margin:0}
+
+nav.index{display:flex;flex-wrap:wrap;gap:8px 20px;padding-block:18px;font-family:var(--mono);font-size:.82rem}
+nav.index a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+nav.index a:hover,nav.index a:focus-visible{border-color:var(--accent);color:var(--accent)}
+
+section.group{padding-block:48px 24px}
+.group-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;margin-bottom:24px;border-top:3px solid var(--ink);padding-top:12px}
+h2{font-family:var(--display);font-stretch:80%;font-weight:800;font-size:clamp(1.6rem,3.5vw,2.4rem);margin:0;text-transform:uppercase;letter-spacing:.01em}
+.group-head p{margin:0;color:var(--muted);max-width:52ch}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:28px}
+.frame{background:var(--sheet);border:1px solid var(--rule);padding:10px 10px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.shot{display:block;aspect-ratio:16/10;max-width:100%;overflow:hidden;background:var(--rule);outline-offset:3px}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .5s ease}
+.shot:hover img,.shot:focus-visible img{transform:scale(1.03)}
+.shot:focus-visible{outline:2px solid var(--accent)}
+.strip{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.04em;padding:0 2px}
+.strip b{color:var(--accent);font-weight:500}
+.frame h3{font-family:var(--display);font-stretch:90%;font-weight:750;font-size:1.3rem;line-height:1.15;margin:0;padding:0 2px}
+.frame p{margin:0;padding:0 2px;color:var(--muted);font-size:.94rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0 2px}
+.tags li{font-family:var(--mono);font-size:.7rem;border:1px solid var(--rule);padding:2px 7px;color:var(--ink)}
+.frame a.open{margin-top:auto;padding:0 2px;font-family:var(--mono);font-size:.8rem;color:var(--accent);text-decoration:none;align-self:flex-start}
+.frame a.open:hover,.frame a.open:focus-visible{text-decoration:underline}
+
+footer{padding-block:48px 64px;border-top:1px solid var(--rule);margin-top:40px;color:var(--muted);font-size:.9rem}
+footer p{max-width:70ch;margin:0}
+
+
+.lnk{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
+.contact{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.contact li{display:grid;grid-template-columns:8rem minmax(0,1fr) auto;align-items:center;gap:8px 20px;padding:16px 0;border-bottom:1px solid var(--rule)}
+.contact .val{font-family:var(--display);font-stretch:85%;font-weight:700;font-size:clamp(1.15rem,2.6vw,1.6rem);overflow-wrap:anywhere;min-width:0;user-select:all}
+.contact .copy{font-family:var(--mono);font-size:.8rem;color:var(--ink);background:none;border:1px solid var(--rule);padding:8px 14px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.contact .copy:hover,.contact .copy:focus-visible{border-color:var(--accent);color:var(--accent)}
+.contact .btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.contact .copy.wa{background:var(--accent);border-color:var(--accent);color:var(--sheet)}
+.contact .copy.wa:hover,.contact .copy.wa:focus-visible{color:var(--sheet);filter:brightness(1.1)}
+@media (max-width:560px){.contact li{grid-template-columns:1fr auto}.contact li .eyebrow{grid-column:1/-1}}
+.acts{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:auto;padding:0 2px}
+.acts .open{margin-top:0}
+a.open.try{background:var(--accent);color:var(--sheet);padding:6px 12px;text-decoration:none}
+a.open.try:hover,a.open.try:focus-visible{text-decoration:none;filter:brightness(1.1)}
+.viewer{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;background:var(--paper);padding-top:env(safe-area-inset-top,0px)}
+.viewer[hidden]{display:none!important}
+.vbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--rule);background:var(--sheet)}
+.vbar h2{font-family:var(--display);font-stretch:85%;font-weight:800;font-size:1.25rem;margin:0;text-transform:uppercase;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vbar .hint{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.vbar a,.vbar button{font-family:var(--mono);font-size:.8rem;color:var(--ink);background:none;border:1px solid var(--rule);padding:8px 12px;cursor:pointer;text-decoration:none}
+.vbar button.close{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.vbar a:hover,.vbar button:hover{border-color:var(--accent)}
+.vframe{flex:1;min-height:0;display:flex;justify-content:center;background:var(--rule);padding:12px}
+.vframe iframe{width:100%;max-width:var(--vw,100%);height:100%;border:0;background:#fff;box-shadow:0 4px 30px rgba(0,0,0,.15)}
+.seg{display:flex}.seg button{border-right-width:0}.seg button:last-child{border-right-width:1px}.seg button[aria-pressed="true"]{background:var(--accent);color:var(--sheet);border-color:var(--accent)}
+body.lock{overflow:hidden}
+@media (max-width:640px){.seg,.vbar .hint{display:none}}
+@media (max-width:760px){.intro{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.shot img{transition:none}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">Portafolio · Diseño y desarrollo web · 2026</div>
+    <h1>Adrián Díaz Serna<br><span>Trabajo web</span></h1>
+    <div class="intro">
+      <p>Estudiante de Comunicación. Aquí reúno los sitios, formularios y materiales interactivos que diseñé y programé en HTML, CSS y JavaScript durante 2026: identidades de marca llevadas a la web, sistemas de captura de datos y recursos didácticos.</p>
+      <dl class="meta">
+        <dt>Proyectos</dt><dd>12</dd>
+        <dt>Periodo</dt><dd>sep – nov 2026</dd>
+        <dt>Herramientas</dt><dd>HTML · CSS · JavaScript · Bootstrap</dd>
+        <dt>Ubicación</dt><dd>Veracruz, México</dd>
+        <dt>Contacto</dt><dd><a class="lnk" href="#contacto">Escríbeme ↓</a> · <a class="lnk" href="https://www.linkedin.com/in/adri%C3%A1n-d%C3%ADaz-serna-46b043387/" target="_blank" rel="noopener">LinkedIn ↗</a></dd>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="index" aria-label="Secciones">
+    <a href="#marcas">Sitios de marca</a>
+    <a href="#sistemas">Formularios y sistemas</a>
+    <a href="#educativo">Material educativo</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <section class="group" id="marcas">
+    <div class="group-head">
+      <h2>Sitios de marca</h2>
+      <p>Páginas de inicio para marcas, sellos y negocios: identidad visual, tono de voz y estructura de navegación.</p>
+    </div>
+    <div class="grid">
+      <article class="frame">
+        <a class="shot" href="proyectos/asfalto-ropa-urbana/index.html" data-try><img src="capturas/asfalto-ropa-urbana.jpg" alt="Portada del sitio Asfalto: foto de siluetas en la calle con el titular Hecha para el asfalto" loading="lazy"></a>
+        <div class="strip"><span><b>12</b> · nov 2026</span><span>Tienda en línea</span></div>
+        <h3>Asfalto, ropa urbana</h3>
+        <p>Sitio para una marca de sudaderas, camisetas y cargos serigrafiados en tiradas cortas, con secciones de colección y proceso.</p>
+        <ul class="tags"><li>Identidad</li><li>E-commerce</li><li>Responsive</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/asfalto-ropa-urbana/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/asfalto-ropa-urbana/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+      <article class="frame">
+        <a class="shot" href="proyectos/asfalto-streetwear/index.html" data-try><img src="capturas/asfalto-streetwear.jpg" alt="Sitio Asfalto Streetwear con el titular Calle sin ruido y catálogo de hombre" loading="lazy"></a>
+        <div class="strip"><span><b>07</b> · oct 2026</span><span>Catálogo</span></div>
+        <h3>Asfalto Streetwear</h3>
+        <p>Primera versión de la marca: catálogo por categorías (hombre, mujer, niños), modo claro y oscuro y datos de la tienda física.</p>
+        <ul class="tags"><li>Catálogo</li><li>Tema claro/oscuro</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/asfalto-streetwear/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/asfalto-streetwear/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+      <article class="frame">
+        <a class="shot" href="proyectos/pulsar/index.html" data-try><img src="capturas/pulsar.jpg" alt="Sitio de Púlsar con el titular Tu mensaje, en órbita sobre un fondo espacial" loading="lazy"></a>
+        <div class="strip"><span><b>06</b> · sep 2026</span><span>Agencia</span></div>
+        <h3>Púlsar</h3>
+        <p>Sitio para un estudio de comunicación, diseño publicitario y redes sociales, con servicios, manifiesto y contacto.</p>
+        <ul class="tags"><li>Branding</li><li>Animación CSS</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/pulsar/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/pulsar/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+      <article class="frame">
+        <a class="shot" href="proyectos/codice-neon/index.html" data-try><img src="capturas/codice-neon.jpg" alt="Sitio Códice Neón con cartelera de películas escrita como código" loading="lazy"></a>
+        <div class="strip"><span><b>05</b> · sep 2026</span><span>Medio digital</span></div>
+        <h3>Códice Neón</h3>
+        <p>Portal de películas, estrenos y noticias donde la cartelera se presenta como código, con pestañas por sección.</p>
+        <ul class="tags"><li>Editorial</li><li>Pestañas JS</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/codice-neon/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/codice-neon/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+      <article class="frame">
+        <a class="shot" href="proyectos/cuzpide/index.html" data-try><img src="capturas/cuzpide.jpg" alt="Portada del sello CUZPIDE con su logotipo sobre fondo negro" loading="lazy"></a>
+        <div class="strip"><span><b>04</b> · sep 2026</span><span>Sello discográfico</span></div>
+        <h3>CUZPIDE</h3>
+        <p>Sitio para un sello discográfico independiente de Veracruz: logotipo propio, galería de trabajos y contacto.</p>
+        <ul class="tags"><li>Logotipo</li><li>Música</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/cuzpide/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/cuzpide/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+      <article class="frame">
+        <a class="shot" href="proyectos/dawsons-saloon/index.html" data-try><img src="capturas/dawsons-saloon.jpg" alt="Portada de Dawson's Saloon con botón Descubre el menú" loading="lazy"></a>
+        <div class="strip"><span><b>03</b> · sep 2026</span><span>Restaurante</span></div>
+        <h3>Dawson's Saloon</h3>
+        <p>Sitio para un pub de estilo americano en Veracruz, con menú, sección del chef y contacto.</p>
+        <ul class="tags"><li>Hostelería</li><li>Landing</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/dawsons-saloon/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/dawsons-saloon/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+      <article class="frame">
+        <a class="shot" href="proyectos/expotech/index.html" data-try><img src="capturas/expotech.jpg" alt="Página de ExpoTech 2026, feria de tecnología e innovación" loading="lazy"></a>
+        <div class="strip"><span><b>02</b> · sep 2026</span><span>Evento</span></div>
+        <h3>ExpoTech 2026</h3>
+        <p>Página de difusión para una feria de tecnología e innovación con conferencias, talleres y demostraciones.</p>
+        <ul class="tags"><li>Evento</li><li>Difusión</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/expotech/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/expotech/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="group" id="sistemas">
+    <div class="group-head">
+      <h2>Formularios y sistemas</h2>
+      <p>Interfaces para capturar datos y calcular totales: pedidos, cotizaciones y calificaciones.</p>
+    </div>
+    <div class="grid">
+      <article class="frame">
+        <a class="shot" href="proyectos/agencia-publicidad/index.html" data-try><img src="capturas/agencia-publicidad.jpg" alt="Formulario de una agencia de publicidad con datos del cliente y tabla de servicios" loading="lazy"></a>
+        <div class="strip"><span><b>11</b> · nov 2026</span><span>Cotizador</span></div>
+        <h3>Agencia de Publicidad y Comunicación</h3>
+        <p>Formulario de solicitud de servicios con datos del cliente y tabla que calcula precio, cantidad e importe.</p>
+        <ul class="tags"><li>Formularios</li><li>JavaScript</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/agencia-publicidad/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/agencia-publicidad/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+      <article class="frame">
+        <a class="shot" href="proyectos/registro-calificaciones/index.html" data-try><img src="capturas/registro-calificaciones.jpg" alt="Sistema de registro de calificaciones con datos del estudiante y materias" loading="lazy"></a>
+        <div class="strip"><span><b>10</b> · nov 2026</span><span>Sistema escolar</span></div>
+        <h3>Registro de calificaciones</h3>
+        <p>Captura de datos del estudiante, periodo de evaluación y calificaciones por materia.</p>
+        <ul class="tags"><li>Formularios</li><li>Validación</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/registro-calificaciones/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/registro-calificaciones/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+      <article class="frame">
+        <a class="shot" href="proyectos/sabor-express/index.html" data-try><img src="capturas/sabor-express.jpg" alt="Menú de Sabor Express con hamburguesa, tacos y pizza" loading="lazy"></a>
+        <div class="strip"><span><b>09</b> · oct 2026</span><span>Pedidos de comida</span></div>
+        <h3>Sabor Express</h3>
+        <p>Menú en tarjetas con fotos y precios, botón para agregar platillos y armado del pedido.</p>
+        <ul class="tags"><li>Carrito</li><li>JavaScript</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/sabor-express/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/sabor-express/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+      <article class="frame">
+        <a class="shot" href="proyectos/sistema-pedidos/index.html" data-try><img src="capturas/sistema-pedidos.jpg" alt="Formulario de pedidos de productos con tabla de producto, precio, cantidad e importe" loading="lazy"></a>
+        <div class="strip"><span><b>08</b> · oct 2026</span><span>Pedidos</span></div>
+        <h3>Sistema de pedidos</h3>
+        <p>Formulario de pedidos con datos del cliente y tabla de productos que calcula importes y total.</p>
+        <ul class="tags"><li>Formularios</li><li>Cálculo</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/sistema-pedidos/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/sistema-pedidos/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="group" id="educativo">
+    <div class="group-head">
+      <h2>Material educativo</h2>
+      <p>Recursos interactivos para enseñar temas de comunicación.</p>
+    </div>
+    <div class="grid">
+      <article class="frame">
+        <a class="shot" href="proyectos/actividades-comunicacion/index.html" data-try><img src="capturas/actividades-comunicacion.jpg" alt="Página de actividades sobre los elementos de la comunicación con memorama, rompecabezas, sopa de letras y frases e imágenes" loading="lazy"></a>
+        <div class="strip"><span><b>01</b> · nov 2026</span><span>Didáctico</span></div>
+        <h3>Elementos de la comunicación</h3>
+        <p>Cuatro actividades interactivas (memorama, rompecabezas, sopa de letras y frases con imágenes) para repasar emisor, receptor, mensaje, canal, código y contexto.</p>
+        <ul class="tags"><li>Ardora</li><li>Gamificación</li></ul>
+        <div class="acts"><a class="open try" href="proyectos/actividades-comunicacion/index.html" data-try>Probar aquí</a><a class="open" href="proyectos/actividades-comunicacion/index.html" target="_blank" rel="noopener">Pestaña nueva ↗</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="group" id="contacto">
+    <div class="group-head">
+      <h2>Contacto</h2>
+      <p>Busco trabajo remoto en contenido digital, redes sociales y marketing. Escríbeme o revisa mi perfil.</p>
+    </div>
+    <ul class="contact">
+      <li>
+        <span class="eyebrow">Correo</span>
+        <span class="val" id="c-mail">adriandiazserna@gmail.com</span>
+        <button type="button" class="copy" data-copy="c-mail">Copiar</button>
+      </li>
+      <li>
+        <span class="eyebrow">Teléfono</span>
+        <span class="val" id="c-tel">+52 229 137 5815</span>
+        <span class="btns"><a class="copy wa" href="https://wa.me/522291375815?text=Hola%20Adri%C3%A1n%2C%20vi%20tu%20portafolio%20web." target="_blank" rel="noopener">WhatsApp ↗</a><button type="button" class="copy" data-copy="c-tel">Copiar</button></span>
+      </li>
+      <li>
+        <span class="eyebrow">LinkedIn</span>
+        <span class="val">Adrián Díaz Serna</span>
+        <a class="copy" href="https://www.linkedin.com/in/adri%C3%A1n-d%C3%ADaz-serna-46b043387/" target="_blank" rel="noopener">Ver perfil ↗</a>
+      </li>
+      <li>
+        <span class="eyebrow">Ubicación</span>
+        <span class="val">Veracruz, Veracruz, México · trabajo remoto</span>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>Los números de cada cuadro indican el proyecto dentro de esta hoja; la fecha es la de su última versión.</p>
+  </div>
+</footer>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="vtitle" hidden>
+  <div class="vbar">
+    <h2 id="vtitle">Proyecto</h2>
+    <span class="hint">Los formularios están en modo demostración: no envían datos.</span>
+    <div class="seg" role="group" aria-label="Ancho de pantalla">
+      <button type="button" data-w="100%" aria-pressed="true">Escritorio</button>
+      <button type="button" data-w="390px" aria-pressed="false">Móvil</button>
+    </div>
+    <a id="vnew" href="#" target="_blank" rel="noopener">Pestaña nueva ↗</a>
+    <button type="button" class="close" id="vclose">Cerrar</button>
+  </div>
+  <div class="vframe"><iframe id="vframe" title="Vista del proyecto" src="about:blank"></iframe></div>
+</div>
+<script>
+(function(){
+  var v=document.getElementById('viewer'),fr=document.getElementById('vframe'),t=document.getElementById('vtitle'),nw=document.getElementById('vnew'),last=null;
+  function open(href,name){last=document.activeElement;t.textContent=name;nw.href=href;fr.src=href;v.hidden=false;document.body.classList.add('lock');document.getElementById('vclose').focus();}
+  function close(){v.hidden=true;fr.src='about:blank';document.body.classList.remove('lock');if(last&&last.focus)last.focus();}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-try]');if(!a)return;
+    e.preventDefault();var card=a.closest('.frame');open(a.getAttribute('href'),card?card.querySelector('h3').textContent:'Proyecto');
+  });
+  document.getElementById('vclose').addEventListener('click',close);
+  document.querySelectorAll('button.copy').forEach(function(b){b.addEventListener('click',function(){
+    var el=document.getElementById(b.dataset.copy),txt=el.textContent;
+    function ok(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar'},1600);}
+    function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Seleccionado';setTimeout(function(){b.textContent='Copiar'},1600);}
+    try{navigator.clipboard.writeText(txt).then(ok,sel);}catch(e){sel();}
+  });});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!v.hidden)close();});
+  v.querySelectorAll('.seg button').forEach(function(b){b.addEventListener('click',function(){
+    v.querySelectorAll('.seg button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    fr.parentNode.style.setProperty('--vw',b.dataset.w);
+  });});
+})();
+</script>
